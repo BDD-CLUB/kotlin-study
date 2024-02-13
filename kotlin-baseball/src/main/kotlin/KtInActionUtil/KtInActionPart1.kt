@@ -1,4 +1,4 @@
-package baseball
+package KtInActionUtil
 
 /*
 * 코틀린의 주요 특성

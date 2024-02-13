@@ -1,4 +1,4 @@
-package baseball
+package KtInActionPractice
 
 import org.junit.jupiter.api.Test
 import java.io.BufferedReader

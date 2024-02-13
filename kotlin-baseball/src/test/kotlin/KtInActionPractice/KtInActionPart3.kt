@@ -1,4 +1,4 @@
-package baseball
+package KtInActionPractice
 
 import KtInActionUtil.*
 import org.junit.jupiter.api.Test
