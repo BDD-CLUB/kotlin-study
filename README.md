@@ -33,3 +33,53 @@
     - 모든 구성원을 리뷰이로 달아주세요.
 5. 구성원 모두는 다른 스터디원의 PR을 확인하고, 코드 리뷰합니다.
     - 적절하게 리뷰가 반영되었다면, approve 합니다.
+
+## 참여자
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/shkisme">
+        <img src="https://github.com/shkisme.png" width="80" alt="shkisme"/>
+        <br/>
+        <sub><b>보름</b></sub>
+      </a>
+      <br/>
+    </td>
+    <td align="center">
+      <a href="https://github.com/02ggang9">
+      <img src="https://github.com/02ggang9.png" width="80" alt="02ggang9"/>
+      <br />
+      <sub><b>짱구</b></sub>
+      </a>
+      <br/>
+    </td>
+      <td align="center">
+      <a href="https://github.com/1jeongg">
+      <img src="https://github.com/1jeongg.png" width="80" alt="1jeongg"/>
+      <br />
+      <sub><b>리나</b></sub>
+      </a>
+      <br/>
+    </td>
+      </td>
+      <td align="center">
+      <a href="https://github.com/gusah009">
+      <img src="https://github.com/gusah009.png" width="80" alt="gusah009"/>
+      <br />
+      <sub><b>미니언</b></sub>
+      </a>
+      <br/>
+    </td>
+    </td>
+      </td>
+      <td align="center">
+      <a href="https://github.com/stopmin">
+      <img src="https://github.com/stopmin.png" width="80" alt="stopmin"/>
+      <br />
+      <sub><b>버디</b></sub>
+      </a>
+      <br/>
+    </td>
+  </tr>
+</table>
