@@ -1,4 +1,4 @@
-package KtInActionUtil
+package KtInActionPractice
 
 const val UNIT_LINE_SEPARATOR = "\n"
 

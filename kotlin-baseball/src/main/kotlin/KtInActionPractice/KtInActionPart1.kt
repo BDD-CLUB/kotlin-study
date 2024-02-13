@@ -1,4 +1,4 @@
-package KtInActionUtil
+package KtInActionPractice
 
 /*
 * 코틀린의 주요 특성
