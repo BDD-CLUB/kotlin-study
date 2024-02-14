@@ -13,6 +13,7 @@ class OpponentTest : NsTest() {
         opponent.getAnswerNumber()
         val result = opponent.answerNumber
         val isValid = result.size == 3 && result.all { it in 1..9 }
+                && result.distinct().size == result.size
         assertTrue(isValid)
     }
 

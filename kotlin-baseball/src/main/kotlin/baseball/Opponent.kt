@@ -8,6 +8,7 @@ class Opponent {
     val answerNumber get() = _answerNumber
 
     fun getAnswerNumber(){
+        _answerNumber.clear()
         while (_answerNumber.size < 3) {
             val randomNumber = Randoms.pickNumberInRange(1, 9)
             if (!_answerNumber.contains(randomNumber)) {

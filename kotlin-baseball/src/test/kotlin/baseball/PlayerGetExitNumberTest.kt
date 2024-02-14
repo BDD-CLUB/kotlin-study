@@ -1,5 +1,6 @@
 package baseball
 
+import baseball.data.PlayerState
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -15,8 +16,8 @@ class PlayerGetExitNumberTest : NsTest() {
         val input = "1"
         run(input)
 
-        val result = player.exitNumber
-        val expected = 1
+        val result = player.state
+        val expected = PlayerState.IN_PROGRESS
 
         assertEquals(expected, result)
     }
