@@ -1,5 +1,7 @@
 package baseball
 
 fun main() {
-    TODO("프로그램 구현")
+    // 숫자야구 게임 실행
+    val baseBallSystem = BaseBallSystem()
+    baseBallSystem.execute()
 }

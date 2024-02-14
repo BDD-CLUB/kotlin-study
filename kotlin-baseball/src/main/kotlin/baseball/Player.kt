@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.data.PlayerState
+import baseball.util.ValidationChecker
 import camp.nextstep.edu.missionutils.Console
 
 
@@ -8,8 +10,8 @@ class Player {
     private var _gameNumber = mutableListOf<Int>()
     val gameNumber get() = _gameNumber
 
-    private var _exitNumber = 0
-    val exitNumber get() = _exitNumber
+    private var _state = PlayerState.IN_PROGRESS
+    val state get() = _state
 
     private val validationCheck = ValidationChecker()
 
@@ -17,17 +19,16 @@ class Player {
     fun getGameNumber(){
         val input = Console.readLine() ?: ""
         validationCheck.checkGameNumber(input)
-
-        val numberList = input.map { it.digitToInt() }.toMutableList()
-        _gameNumber = numberList
+        _gameNumber = input
+                .map { it.digitToInt() }
+                .toMutableList()
     }
 
     // 게임 종료시 재시작할지, 종료할지에 대한 입력을 받음
     fun getExitNumber(){
         val input = Console.readLine() ?: ""
         validationCheck.checkExitNumber(input)
-
-        _exitNumber = input.toInt()
+        _state = PlayerState.from(input.toInt())
     }
 
 }
