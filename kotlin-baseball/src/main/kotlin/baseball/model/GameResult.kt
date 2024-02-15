@@ -1,8 +1,8 @@
 package baseball.model
 
 data class GameResult(
-        val strike: Int,
-        val ball: Int,
+    val strike: Int,
+    val ball: Int,
 ) {
     val isAllStrike: Boolean = strike == NUMBERS_SIZE
     val isNoting: Boolean = ball == 0 && strike == 0

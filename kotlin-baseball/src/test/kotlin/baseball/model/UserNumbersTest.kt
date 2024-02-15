@@ -9,7 +9,7 @@ import java.lang.IllegalArgumentException
 class UserNumbersTest {
 
     @Test
-    fun `유저 숫자의 개수가 유효하지 않다면 실패한다`() {
+    fun `유저 숫자의 개수가 유효하지 않다면 예외를 발생시킨다`() {
         //given
         val invalidList = listOf(1, 2, 3, 4)
 
@@ -20,7 +20,7 @@ class UserNumbersTest {
     }
 
     @Test
-    fun `유저 숫자의 범위가 유효하지 않다면 실패한다`() {
+    fun `유저 숫자의 범위가 유효하지 않다면 예외를 발생시킨다`() {
         //given
         val invalidList = listOf(MAX_NUMBER + 1, 2, 3)
 
@@ -32,7 +32,7 @@ class UserNumbersTest {
 
 
     @Test
-    fun `유저 숫자에 중복이 있다면 실패한다`() {
+    fun `유저 숫자에 중복이 있다면 예외를 발생시킨다`() {
         //given
         val invalidList = listOf(1, 1, 2)
 

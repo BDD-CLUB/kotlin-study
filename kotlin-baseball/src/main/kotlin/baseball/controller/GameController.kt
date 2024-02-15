@@ -33,7 +33,5 @@ class GameController(
         return result
     }
 
-    private fun askRestartOrStop(): GameStatus {
-        return GameStatus.from(readNumber())
-    }
+    private fun askRestartOrStop(): GameStatus = GameStatus.from(readNumber())
 }

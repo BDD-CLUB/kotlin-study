@@ -6,9 +6,7 @@ enum class GameStatus(private val status: Int) {
     ;
 
     companion object {
-        fun from(status: Int): GameStatus {
-            return values().firstOrNull { it.status == status }
-                    ?: throw IllegalArgumentException("${status}는 유효하지 않은 입력입니다.")
-        }
+        fun from(status: Int): GameStatus = values().firstOrNull { it.status == status }
+            ?: throw IllegalArgumentException("${status}는 유효하지 않은 입력입니다.")
     }
 }
