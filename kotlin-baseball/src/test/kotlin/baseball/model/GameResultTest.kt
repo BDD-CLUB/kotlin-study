@@ -8,7 +8,7 @@ class GameResultTest {
     @Test
     fun `모든 스트라이크일 경우의 결과를 반환한다`() {
         // given
-        val result = GameResult(strike = 3, ball = 0)
+        val result = GameResult(strike = NUMBERS_SIZE, ball = 0)
 
         // when
         val isAllStrike = result.isAllStrike
