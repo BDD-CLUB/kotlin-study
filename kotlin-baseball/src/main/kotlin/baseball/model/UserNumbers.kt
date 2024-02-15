@@ -26,15 +26,15 @@ class UserNumbers(private val numbers: List<Int>) {
         }
     }
 
-    infix fun compareTo(randomNumbers: RandomNumbers): GameResult {
+    infix fun compareTo(otherNumbers: List<Int>): GameResult {
         var strike = 0
         var ball = 0
 
         for (index in numbers.indices) {
-            val (userNumber, randomNumber) = numbers[index] to randomNumbers.numbers[index]
-            if (userNumber == randomNumber) {
+            val (userNumber, otherNumber) = numbers[index] to otherNumbers[index]
+            if (userNumber == otherNumber) {
                 strike++
-            } else if (randomNumbers.contains(userNumber)) {
+            } else if (otherNumbers.contains(userNumber)) {
                 ball++
             }
         }

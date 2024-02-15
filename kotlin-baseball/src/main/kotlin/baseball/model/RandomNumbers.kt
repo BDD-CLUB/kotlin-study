@@ -2,11 +2,27 @@ package baseball.model
 
 import camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange
 
-class RandomNumbers {
+class RandomNumbers : GameNumbers {
 
-    val numbers: List<Int> = pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE)
+    private var numbers: List<Int>
+
+    init {
+        numbers = generate()
+    }
 
     fun contains(number: Int): Boolean {
         return numbers.contains(number)
+    }
+
+    override fun get(): List<Int> {
+        return numbers
+    }
+
+    override fun generate(): List<Int> {
+        return pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE)
+    }
+
+    override fun setNumbers() {
+        numbers = generate()
     }
 }
