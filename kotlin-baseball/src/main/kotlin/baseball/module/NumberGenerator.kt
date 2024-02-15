@@ -1,4 +1,4 @@
-package baseball
+package baseball.module
 
 interface NumberGenerator {
     fun generateRandomNumber(): Int

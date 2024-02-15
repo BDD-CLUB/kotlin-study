@@ -1,7 +1,7 @@
-package baseball
+package baseball.module
 
-import baseball.NumberGenerator.Companion.MAX_VALUE
-import baseball.NumberGenerator.Companion.MIN_VALUE
+import baseball.module.NumberGenerator.Companion.MAX_VALUE
+import baseball.module.NumberGenerator.Companion.MIN_VALUE
 import camp.nextstep.edu.missionutils.Randoms
 
 class ComputerGenerator : NumberGenerator {
