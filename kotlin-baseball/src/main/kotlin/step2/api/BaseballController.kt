@@ -12,15 +12,9 @@ class BaseballController(
         baseballService.createBaseball()
     }
 
-    fun getBaseballGameResult(userInputNumbers: String): BaseballResultDto {
-
-        // 어노테이션으로 만들어보면 어떨까용?
-        if (!(userInputNumbers.length == 3 && userInputNumbers.toIntOrNull() != null)) {
-            throw IllegalArgumentException()
-        }
-
-        return baseballService.compareRandomNumbers(userInputNumbers)
-
-    }
+    fun getBaseballGameResult(userInputNumbers: String): BaseballResultDto =
+            requireNotNull(userInputNumbers.takeIf { it.length == 3 && it.toIntOrNull() != null }) {
+        "유효하지 않은 숫자 또는 문자입니다."
+    }.let { baseballService.compareRandomNumbers(it) }
 
 }
