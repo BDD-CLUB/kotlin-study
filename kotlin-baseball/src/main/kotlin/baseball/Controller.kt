@@ -13,7 +13,7 @@ fun run() {
         while (true) {
             println(randomNumbers.numbers)
             val result = gameAndGetResult(randomNumbers)
-            if (result.isStrike) {
+            if (result.isAllStrike) {
                 break
             }
         }
