@@ -1,24 +1,12 @@
 package baseball.model
 
-import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange
 
 class RandomNumbers {
 
-    private val _numbers = mutableListOf<Int>()
-
-    init {
-        while (_numbers.size < NUMBERS_SIZE) {
-            val randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER)
-            if (!_numbers.contains(randomNumber)) {
-                _numbers.add(randomNumber)
-            }
-        }
-    }
-
-    val numbers: List<Int>
-        get() = _numbers
+    val numbers: List<Int> = pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE)
 
     fun contains(number: Int): Boolean {
-        return _numbers.contains(number)
+        return numbers.contains(number)
     }
 }
