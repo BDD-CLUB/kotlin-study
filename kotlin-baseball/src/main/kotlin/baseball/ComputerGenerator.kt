@@ -10,10 +10,11 @@ class ComputerGenerator : NumberGenerator {
     }
 
     override fun generateThreeRandomNumbers(): List<Int> {
-        val numbers = mutableListOf<Int>()
-        for (i in 1..3) {
-            numbers.add(generateRandomNumber())
+        val numbers = mutableSetOf<Int>()
+        while (numbers.size < 3) {
+            val number = generateRandomNumber()
+            numbers.add(number)
         }
-        return numbers
+        return numbers.toList()
     }
 }
