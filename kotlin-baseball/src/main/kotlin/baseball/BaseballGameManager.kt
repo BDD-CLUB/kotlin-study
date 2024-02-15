@@ -1,5 +1,7 @@
 package baseball
 
+import baseball.common.ErrorMessage
+import baseball.common.ErrorMessage.ILLEGAL_INPUT
 import baseball.common.GameMessage.*
 
 class BaseballGameManager {
@@ -51,7 +53,7 @@ class BaseballGameManager {
         while (choice !in 1..2) {
             choice = readLine()?.toIntOrNull()
             if (choice !in 1..2) {
-                println("1 또는 2를 입력하세요.")
+                throw IllegalArgumentException(ILLEGAL_INPUT.message)
             }
         }
         return choice!!
