@@ -1,6 +1,7 @@
 package baseball.view
 
 import baseball.model.NUMBER_LENGTH
+import baseball.model.Number
 import baseball.model.Numbers
 import baseball.model.StrikeBall
 import baseball.model.UserContinueGame
@@ -13,7 +14,7 @@ class View {
 
     fun getUserNumbers(): Numbers {
         print("숫자를 입력해주세요 : ")
-        return Numbers(Console.readLine())
+        return Numbers(Console.readLine().map { Number(it.digitToInt()) })
     }
 
     fun getUserContinueGame() = UserContinueGame.of(Console.readLine())

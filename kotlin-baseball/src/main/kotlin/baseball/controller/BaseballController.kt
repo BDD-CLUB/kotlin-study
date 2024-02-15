@@ -22,8 +22,5 @@ class BaseballController(
         } while (view.getUserContinueGame() == UserContinueGame.RESTART)
     }
 
-    private fun StrikeBall.isGameContinue(): Boolean {
-        println("${this.strike} ${this.ball}")
-        return this.strike != NUMBER_LENGTH
-    }
+    private fun StrikeBall.isGameContinue() = this.strike != NUMBER_LENGTH
 }
