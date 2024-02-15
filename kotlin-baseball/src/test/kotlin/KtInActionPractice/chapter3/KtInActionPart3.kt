@@ -1,5 +1,6 @@
-package KtInActionPractice
+package KtInActionPractice.chapter3
 
+import KtInActionPractice.*
 import org.junit.jupiter.api.Test
 
 

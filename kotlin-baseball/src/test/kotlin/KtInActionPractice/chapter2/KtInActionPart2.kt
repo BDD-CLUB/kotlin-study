@@ -1,4 +1,4 @@
-package KtInActionPractice
+package KtInActionPractice.chapter2
 
 import org.junit.jupiter.api.Test
 import java.io.BufferedReader
