@@ -1,6 +1,5 @@
 package baseball
 
-import baseball.common.ErrorMessage
 import baseball.common.ErrorMessage.ILLEGAL_INPUT
 import baseball.common.GameMessage.*
 
@@ -11,7 +10,6 @@ class BaseballGameManager {
     }
 
     private val baseBallGame = BaseBallGame()
-
     private val player = HumanPlayer()
     private val computer = ComputerPlayer()
 
