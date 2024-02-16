@@ -1,8 +1,8 @@
 package baseball.module
 
 interface NumberGenerator {
-    fun generateRandomNumber(): Int
-    fun generateThreeRandomNumbers(): List<Int>
+    fun generateRandomNumber(): Number
+    fun generateThreeRandomNumbers(): List<Number>
 
     companion object {
         const val MIN_VALUE: Int = 1

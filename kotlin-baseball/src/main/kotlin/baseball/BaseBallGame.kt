@@ -1,14 +1,14 @@
 package baseball
 
 class BaseBallGame {
-    lateinit var targetNumbers: List<Int>
+    lateinit var targetNumbers: List<Number>
     private var lastStrikes = 0
 
-    fun initializeGame(targetNumbers: List<Int>) {
+    fun initializeGame(targetNumbers: List<Number>) {
         this.targetNumbers = targetNumbers
     }
 
-    fun calculateStrikesAndBalls(guess: List<Int>): Pair<Int, Int> {
+    fun calculateStrikesAndBalls(guess: List<Number>): Pair<Int, Int> {
         var strikes = 0
         var balls = 0
         guess.forEachIndexed { index, number ->

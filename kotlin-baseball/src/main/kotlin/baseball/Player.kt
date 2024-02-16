@@ -8,13 +8,13 @@ interface Player {
 }
 
 class ComputerPlayer : Player {
-    override fun selectNumbers(): List<Int> {
+    override fun selectNumbers(): List<Number> {
         return ComputerGenerator().generateThreeRandomNumbers()
     }
 }
 
 class HumanPlayer : Player {
-    override fun selectNumbers(): List<Int> {
+    override fun selectNumbers(): List<Number> {
         return BaseballInputModule().readNumbers()
     }
 
