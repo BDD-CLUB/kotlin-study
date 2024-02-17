@@ -1,11 +1,10 @@
 package baseball.util
 
 import baseball.data.Result
-import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class CalculatorTest : NsTest() {
+class CalculatorTest {
 
     private val calculator = Calculator()
 
@@ -49,6 +48,4 @@ class CalculatorTest : NsTest() {
         assertEquals(expected, result)
     }
 
-    override fun runMain() {
-    }
 }

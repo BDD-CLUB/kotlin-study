@@ -1,16 +1,17 @@
 package baseball
 
+import baseball.util.*
 import camp.nextstep.edu.missionutils.Randoms
 
 class Opponent {
 
     private var _answerNumber = mutableListOf<Int>()
-    val answerNumber get() = _answerNumber
+    val answerNumber: List<Int> get() = _answerNumber
 
-    fun getAnswerNumber(){
+    fun getAnswerNumber() {
         _answerNumber.clear()
-        while (_answerNumber.size < 3) {
-            val randomNumber = Randoms.pickNumberInRange(1, 9)
+        while (_answerNumber.size < NUM_COUNT) {
+            val randomNumber = Randoms.pickNumberInRange(MIN_VALUE, MAX_VALUE)
             if (!_answerNumber.contains(randomNumber)) {
                 _answerNumber.add(randomNumber)
             }

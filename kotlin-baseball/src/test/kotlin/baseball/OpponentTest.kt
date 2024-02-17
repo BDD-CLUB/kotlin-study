@@ -1,10 +1,9 @@
 package baseball
 
-import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class OpponentTest : NsTest() {
+class OpponentTest {
 
     private val opponent = Opponent()
 
@@ -17,6 +16,4 @@ class OpponentTest : NsTest() {
         assertTrue(isValid)
     }
 
-    override fun runMain() {
-    }
 }

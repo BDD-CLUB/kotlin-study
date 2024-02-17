@@ -1,11 +1,11 @@
 package baseball.util
 
 import baseball.data.PlayerState
-import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
-class PlayerStateTest : NsTest() {
+class PlayerStateTest {
 
     @Test
     fun `재시작일 경우(1 입력)` () {
@@ -25,12 +25,10 @@ class PlayerStateTest : NsTest() {
 
     @Test
     fun `이외의 값 입력된 경우` () {
-        val value = 0
-        val result = PlayerState.from(value)
-        val expected = PlayerState.IN_PROGRESS
-        assertEquals(expected, result)
+        assertThrows<IllegalArgumentException> {
+            val value = 0
+            val result = PlayerState from value
+        }
     }
 
-    override fun runMain() {
-    }
 }
