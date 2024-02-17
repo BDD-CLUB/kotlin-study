@@ -1,6 +1,9 @@
 package baseball
 
 import baseball.model.GameResult
+import baseball.model.GameStatus.RESTART
+import baseball.model.GameStatus.STOP
+import baseball.model.NUMBERS_SIZE
 import camp.nextstep.edu.missionutils.Console
 
 fun printStartMessage() {
@@ -29,9 +32,9 @@ fun printResult(gameResult: GameResult) {
         gameResult.isAllStrike -> {
             println(
                 """
-                3스트라이크
-                3개의 숫자를 모두 맞히셨습니다! 게임 종료
-                게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.
+               ${NUMBERS_SIZE}스트라이크
+                ${NUMBERS_SIZE}개의 숫자를 모두 맞히셨습니다! 게임 종료
+                게임을 새로 시작하려면 ${RESTART.status}, 종료하려면 ${STOP.status}를 입력하세요.
                 """.trimIndent()
             )
         }

@@ -1,6 +1,6 @@
 package baseball.model
 
-enum class GameStatus(private val status: Int) {
+enum class GameStatus(val status: Int) {
     RESTART(1),
     STOP(2),
     ;
