@@ -1,6 +1,9 @@
 package baseball.model
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class GameResultTest {
@@ -17,10 +20,10 @@ class GameResultTest {
         val isOnlyBall = result.isOnlyBall
 
         // then
-        assertThat(isAllStrike).isTrue
-        assertThat(isOnlyStrike).isTrue
-        assertThat(isNoting).isFalse
-        assertThat(isOnlyBall).isFalse
+        assertTrue(isAllStrike)
+        assertTrue(isOnlyStrike)
+        assertFalse(isNoting)
+        assertFalse(isOnlyBall)
     }
 
     @Test
@@ -35,10 +38,10 @@ class GameResultTest {
         val isOnlyStrike = result.isOnlyStrike
 
         // then
-        assertThat(isNoting).isTrue
-        assertThat(isAllStrike).isFalse
-        assertThat(isOnlyBall).isFalse
-        assertThat(isOnlyStrike).isFalse
+        assertTrue(isNoting)
+        assertFalse(isAllStrike)
+        assertFalse(isOnlyBall)
+        assertFalse(isOnlyStrike)
     }
 
     @Test
@@ -53,10 +56,10 @@ class GameResultTest {
         val isOnlyStrike = result.isOnlyStrike
 
         // then
-        assertThat(isOnlyBall).isTrue
-        assertThat(isNoting).isFalse
-        assertThat(isAllStrike).isFalse
-        assertThat(isOnlyStrike).isFalse
+        assertTrue(isOnlyBall)
+        assertFalse(isNoting)
+        assertFalse(isAllStrike)
+        assertFalse(isOnlyStrike)
     }
 
     @Test
@@ -71,10 +74,10 @@ class GameResultTest {
         val isAllStrike = result.isAllStrike
 
         // then
-        assertThat(isOnlyStrike).isTrue
-        assertThat(isOnlyBall).isFalse
-        assertThat(isNoting).isFalse
-        assertThat(isAllStrike).isFalse
+        assertTrue(isOnlyStrike)
+        assertFalse(isOnlyBall)
+        assertFalse(isNoting)
+        assertFalse(isAllStrike)
     }
 
     @Test
@@ -89,9 +92,9 @@ class GameResultTest {
         val isAllStrike = result.isAllStrike
 
         // then
-        assertThat(isOnlyStrike).isFalse
-        assertThat(isOnlyBall).isFalse
-        assertThat(isNoting).isFalse
-        assertThat(isAllStrike).isFalse
+        assertFalse(isOnlyStrike)
+        assertFalse(isOnlyBall)
+        assertFalse(isNoting)
+        assertFalse(isAllStrike)
     }
 }
