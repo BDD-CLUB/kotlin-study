@@ -1,6 +1,7 @@
 package baseball.controller
 
 import baseball.model.*
+import baseball.model.GameStatus.RESTART
 import baseball.model.GameStatus.STOP
 import baseball.printResult
 import baseball.printStartMessage
@@ -8,22 +9,16 @@ import baseball.readNumber
 import baseball.readNumbers
 
 class GameController(
-        private val computerNumbers: GameNumbers,
+    private val computerNumbers: GameNumbers,
 ) {
     fun run() {
         printStartMessage()
-        while (true) {
+        do {
             computerNumbers.setNumbers()
-            while (true) {
+            do {
                 val result = gameAndGetResult()
-                if (result.isAllStrike) {
-                    break
-                }
-            }
-            if (askRestartOrStop() == STOP) {
-                break
-            }
-        }
+            } while (!result.isAllStrike)
+        } while (askRestartOrStop() == RESTART)
     }
 
     private fun gameAndGetResult(): GameResult {
