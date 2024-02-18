@@ -1,5 +1,6 @@
 package lotto.global
 
+import org.reflections.Reflections
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 import kotlin.reflect.KParameter
@@ -65,24 +66,27 @@ object ContainerV2 {
 
 }
 
-fun main() {
-//    ContainerV1.register(AService::class)
-//    val aService = ContainerV1.getInstance(AService::class)
-//    aService.print()
-
-    ContainerV2.register(AService::class)
-    ContainerV2.register(BService::class)
-
-    val bService = ContainerV2.getInstance(BService::class)
-    bService.print()
+fun start(clazz: KClass<*>) {
+    val reflections = Reflections(clazz.packageName)
+    val jClasses = reflections.getTypesAnnotatedWith(Component::class.java)
+    jClasses.forEach { jClasses -> ContainerV2.register(jClasses.kotlin) }
 }
 
+private val KClass<*>.packageName: String
+    get() {
+        val qualifiedName = this.qualifiedName ?: throw IllegalArgumentException("익명 객체입니다!")
+        val hierarchy = qualifiedName.split(".")
+        return hierarchy.subList(0, hierarchy.lastIndex).joinToString(".")
+    }
+
+@Component
 class AService {
     fun print() {
         println("A Service 입니다")
     }
 }
 
+@Component
 class BService (
         private val aService: AService,
         private val cService: CService?,
