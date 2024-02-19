@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/kotlin-baseball" />
+    <file type="web" url="file://$PROJECT_DIR$/kotlin-christmas" />
+    <file type="web" url="file://$PROJECT_DIR$/kotlin-lotto" />
+    <file type="web" url="file://$PROJECT_DIR$/kotlin-oncall" />
+    <file type="web" url="file://$PROJECT_DIR$/kotlin-racingcar" />
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
