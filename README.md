@@ -81,5 +81,15 @@
       </a>
       <br/>
     </td>
+    </td>
+      </td>
+      <td align="center">
+      <a href="https://github.com/KIJUNG-CHAE">
+      <img src="https://github.com/KIJUNG-CHAE.png" width="80" alt="stopmin"/>
+      <br />
+      <sub><b>빅터</b></sub>
+      </a>
+      <br/>
+    </td>
   </tr>
 </table>
