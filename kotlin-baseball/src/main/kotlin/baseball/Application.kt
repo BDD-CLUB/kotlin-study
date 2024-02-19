@@ -1,5 +1,12 @@
 package baseball
 
+import step1.*
+import step2.api.BaseballController
+import step2.application.BaseballService
+import step2.global.BaseballApplication
+import step2.view.BaseballView
+
 fun main() {
-    TODO("프로그램 구현")
+    BaseballApplication(BaseballView(), BaseballController(BaseballService())).run()
 }
+
