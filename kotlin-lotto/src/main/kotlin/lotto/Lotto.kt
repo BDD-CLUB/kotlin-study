@@ -6,7 +6,7 @@ class Lotto(
     val numbers: List<Int> = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBERS_COUNT)
 ) {
     init {
-        require(numbers.size == LOTTO_NUMBERS_COUNT)
+        require(numbers.size == LOTTO_NUMBERS_COUNT && numbers.toSet().size == numbers.size)
     }
 
     val sortedLotto
