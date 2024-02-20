@@ -1,5 +1,9 @@
 package baseball
 
+import baseball.controller.GameController
+import baseball.model.RandomNumbers
+
 fun main() {
-    TODO("프로그램 구현")
+    val gameController = GameController(RandomNumbers())
+    gameController.run()
 }
