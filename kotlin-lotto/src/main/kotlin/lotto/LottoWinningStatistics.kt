@@ -23,6 +23,10 @@ data class LottoWinningStatistics(
     private val ROI: Double
         get() = sumPrizeMoney / (amount.toDouble())
 
+    fun printROI() {
+        println("총 수익률은 ${Math.round(ROI * 100) / 1000.0}%입니다.")
+    }
+
     fun printStatistics() {
         println()
         println("당첨 통계")

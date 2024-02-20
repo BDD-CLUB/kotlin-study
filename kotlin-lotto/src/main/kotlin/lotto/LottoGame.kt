@@ -17,6 +17,7 @@ class LottoGame {
         val lottoWinningStatistics = LottoWinningStatistics.of(lottoList, lottoPrizeNumbers)
 
         lottoWinningStatistics.printStatistics()
+        lottoWinningStatistics.printROI()
 
     }
 
