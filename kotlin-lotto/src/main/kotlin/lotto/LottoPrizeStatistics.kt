@@ -1,10 +1,7 @@
 package lotto
 
-import java.math.BigDecimal
-import java.math.RoundingMode
 
-
-data class LottoWinningStatistics(
+data class LottoPrizeStatistics(
     val amount: Int,
     val firstPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.FIRST_PRIZE, 0),
     val secondPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.SECOND_PRIZE, 0),
@@ -39,8 +36,8 @@ data class LottoWinningStatistics(
     }
 
     companion object {
-        fun of(lottoList: List<Lotto>, lottoPrizeNumbers: LottoPrizeNumbers): LottoWinningStatistics {
-            val newLottoWinningStatistics = LottoWinningStatistics(amount = lottoList.size)
+        fun of(lottoList: List<Lotto>, lottoPrizeNumbers: LottoPrizeNumbers): LottoPrizeStatistics {
+            val newLottoWinningStatistics = LottoPrizeStatistics(amount = lottoList.size)
             lottoList.forEach { lotto ->
                 updateStatisticsForLotto(lotto, lottoPrizeNumbers, newLottoWinningStatistics)
             }
@@ -50,7 +47,7 @@ data class LottoWinningStatistics(
         private fun updateStatisticsForLotto(
             lotto: Lotto,
             lottoPrizeNumbers: LottoPrizeNumbers,
-            statistics: LottoWinningStatistics
+            statistics: LottoPrizeStatistics
         ) {
             val matchedBaseNumberCount = lotto.getLotto.toSet().intersect(lottoPrizeNumbers.getBaseNumbers.toSet()).size
             val hitBonusNumber = lottoPrizeNumbers.getBonusNumber in lotto.getLotto
@@ -61,7 +58,6 @@ data class LottoWinningStatistics(
                     if (hitBonusNumber) statistics.secondPrizeStatistic.addCount()
                     else statistics.thirdPrizeStatistic.addCount()
                 }
-
                 4 -> statistics.fourthPrizeStatistic.addCount()
                 3 -> statistics.fifthPrizeStatistic.addCount()
                 else -> {}

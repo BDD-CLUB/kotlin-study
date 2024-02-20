@@ -14,10 +14,10 @@ class LottoGame {
 
         val lottoPrizeNumbers = getLottoPrizeNumbers()
 
-        val lottoWinningStatistics = LottoWinningStatistics.of(lottoList, lottoPrizeNumbers)
+        val lottoPrizeStatistics = LottoPrizeStatistics.of(lottoList, lottoPrizeNumbers)
 
-        lottoWinningStatistics.printStatistics()
-        lottoWinningStatistics.printROI()
+        lottoPrizeStatistics.printStatistics()
+        lottoPrizeStatistics.printROI()
 
     }
 

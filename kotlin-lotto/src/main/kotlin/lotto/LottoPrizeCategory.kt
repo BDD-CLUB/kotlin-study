@@ -8,9 +8,9 @@ enum class LottoPrizeCategory(
 ) {
     FIRST_PRIZE(1, 2_000_000_000L,  6, false),
     SECOND_PRIZE(2, 30_000_000L, 5, true),
-    THIRD_PRIZE(2, 1_500_000L, 5, false),
-    FOURTH_PRIZE(2, 50_000L, 4, false),
-    FIFTH_PRIZE(2, 5_000L, 3, false),
+    THIRD_PRIZE(3, 1_500_000L, 5, false),
+    FOURTH_PRIZE(4, 50_000L, 4, false),
+    FIFTH_PRIZE(5, 5_000L, 3, false),
     ;
 
     val prizeKoreaMoneyWithComma
