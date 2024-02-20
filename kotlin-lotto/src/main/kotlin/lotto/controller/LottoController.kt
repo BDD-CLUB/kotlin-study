@@ -15,24 +15,35 @@ class LottoController(
 
     fun purchaseLotto(): Int {
         lottoGameMessageView.announcePurchaseMessage()
-        return (Console.readLine()
-                ?.toIntOrNull()
-                ?: IllegalArgumentException("올바른 구입금액을 입력해 주세요.")) as Int
+        while (true) {
+            try {
+                return (Console.readLine()
+                        ?.toIntOrNull()
+                        ?: IllegalArgumentException("[ERROR] 올바른 구입금액을 입력해 주세요.")) as Int
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            } catch (e: ClassCastException) {
+                println("[ERROR] 올바른 구매금액을 입력해주세요.")
+            }
+        }
     }
 
     fun enterWinningNumbers(): List<Int> {
         lottoGameMessageView.announceEnterWinningNumbers()
-        return (Console.readLine()
+        val winningNumbers = (Console.readLine()
                 ?.split(",")
                 ?.map { it.toInt() }
-                ?: throw IllegalArgumentException("올바른 당첨 번호를 입력해 주세요."))
+                ?: throw IllegalArgumentException("[ERROR] 올바른 당첨 번호를 입력해 주세요."))
+
+        return winningNumbers
+
     }
 
     fun enterBonusNumber(): Int {
         lottoGameMessageView.announceEnterBonusNumbers()
         return Console.readLine()
                 ?.toIntOrNull()
-                ?: throw IllegalArgumentException("올바른 보너스 번호를 입력해 주세요.")
+                ?: throw IllegalArgumentException("[ERROR] 올바른 보너스 번호를 입력해 주세요.")
     }
 
     fun announceResult(lottoResult: List<LottoWinningRank?>, purchaseAmount: Int) {
@@ -47,6 +58,5 @@ class LottoController(
 
     private fun generateRandomLottoNumbers(): List<Int> =
             Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_START_NUMBER, Lotto.LOTTO_END_NUMBER, Lotto.LOTTO_TOTAL_COUNT)
-
 
 }
