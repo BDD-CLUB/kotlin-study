@@ -1,6 +1,6 @@
 package lotto
 
-data class LottoPrizeNumbers(
+class LottoPrizeNumbers(
     private val baseNumbers: List<Int>,
     private val bonusNumber: Int,
 ) {

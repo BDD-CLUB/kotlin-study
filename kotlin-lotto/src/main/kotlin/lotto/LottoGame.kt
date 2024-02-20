@@ -112,7 +112,7 @@ class LottoGame {
 
     private fun printLottoList(lottoList: List<Lotto>) {
         for (lotto in lottoList) {
-            println(lotto.getSortedLotto)
+            println(lotto.sortedLotto)
         }
     }
 

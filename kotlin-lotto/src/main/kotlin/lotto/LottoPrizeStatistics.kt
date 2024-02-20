@@ -1,7 +1,7 @@
 package lotto
 
 
-data class LottoPrizeStatistics(
+class LottoPrizeStatistics(
     val amount: Int,
     val firstPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.FIRST_PRIZE, 0),
     val secondPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.SECOND_PRIZE, 0),
@@ -67,7 +67,7 @@ data class LottoPrizeStatistics(
 
 }
 
-data class LottoPrizeStatistic(
+class LottoPrizeStatistic(
     val prizeCategory: LottoPrizeCategory,
     var count: Int,
 ) {
