@@ -26,9 +26,7 @@ class LottoGame {
         while (true) {
             try {
                 val input = Console.readLine()
-                val validInput = getValidInput(input)
-                val amount = validInput / 1000
-                return amount
+                return getValidAmount(input)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
                 println("구입 금액을 다시 입력해 주세요.")
@@ -89,7 +87,7 @@ class LottoGame {
                 ?: throw IllegalArgumentException("[ERROR] {$input}은(는) 1부터 45 사이의 숫자여야 합니다.")
     }
 
-    private fun getValidInput(input: String): Int {
+    private fun getValidAmount(input: String): Int {
         val validInput = input.toIntOrNull()
             ?: throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. 1000원 단위 숫자만 입력 가능합니다.")
 
@@ -97,7 +95,7 @@ class LottoGame {
             throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. 1000원 단위 숫자만 입력 가능합니다.")
         }
 
-        return validInput
+        return validInput / 1000
     }
 
     private fun printLottoList(lottoList: List<Lotto>) {
