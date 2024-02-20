@@ -1,7 +1,11 @@
 package lotto
 
+import java.math.BigDecimal
+import java.math.RoundingMode
+
 
 data class LottoWinningStatistics(
+    val amount: Int,
     val firstPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.FIRST_PRIZE, 0),
     val secondPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.SECOND_PRIZE, 0),
     val thirdPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.THIRD_PRIZE, 0),
@@ -9,7 +13,17 @@ data class LottoWinningStatistics(
     val fifthPrizeStatistic: LottoPrizeStatistic = LottoPrizeStatistic(LottoPrizeCategory.FIFTH_PRIZE, 0),
 ) {
 
-    fun print() {
+    private val sumPrizeMoney: Long
+        get() = firstPrizeStatistic.prizeCategory.prizeKoreaMoney * firstPrizeStatistic.count +
+                secondPrizeStatistic.prizeCategory.prizeKoreaMoney * secondPrizeStatistic.count +
+                thirdPrizeStatistic.prizeCategory.prizeKoreaMoney * thirdPrizeStatistic.count +
+                fourthPrizeStatistic.prizeCategory.prizeKoreaMoney * fourthPrizeStatistic.count +
+                fifthPrizeStatistic.prizeCategory.prizeKoreaMoney * fifthPrizeStatistic.count
+
+    private val ROI: Double
+        get() = sumPrizeMoney / (amount.toDouble())
+
+    fun printStatistics() {
         println()
         println("당첨 통계")
         println("---")
@@ -22,7 +36,7 @@ data class LottoWinningStatistics(
 
     companion object {
         fun of(lottoList: List<Lotto>, lottoPrizeNumbers: LottoPrizeNumbers): LottoWinningStatistics {
-            val newLottoWinningStatistics = LottoWinningStatistics()
+            val newLottoWinningStatistics = LottoWinningStatistics(amount = lottoList.size)
             lottoList.forEach { lotto ->
                 updateStatisticsForLotto(lotto, lottoPrizeNumbers, newLottoWinningStatistics)
             }
