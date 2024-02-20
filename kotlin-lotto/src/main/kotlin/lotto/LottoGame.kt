@@ -2,10 +2,10 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
-const val LOTTO_MIN_NUMBER = 1
-const val LOTTO_MAX_NUMBER = 45
-const val LOTTO_NUMBERS_COUNT = 6
-const val LOTTO_PRICE = 1000
+const val LOTTO_MIN_NUMBER: Int = 1
+const val LOTTO_MAX_NUMBER: Int = 45
+const val LOTTO_NUMBERS_COUNT: Int = 6
+const val LOTTO_PRICE: Int = 1000
 
 class LottoGame {
     fun start() {
