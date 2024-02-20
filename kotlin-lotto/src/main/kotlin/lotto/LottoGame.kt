@@ -21,7 +21,6 @@ class LottoGame {
 
     }
 
-
     private fun getAmount(): Int {
         println("구입 금액을 입력해 주세요.")
         while (true) {
