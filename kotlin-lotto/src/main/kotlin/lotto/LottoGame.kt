@@ -37,7 +37,7 @@ class LottoGame {
         val validInput = input.toIntOrNull()
             ?: throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. 1000원 단위 숫자만 입력 가능합니다.")
 
-        if (validInput % 1000 != 0) {
+        if (validInput % 1000 != 0 || validInput <= 0) {
             throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. 1000원 단위 숫자만 입력 가능합니다.")
         }
 
