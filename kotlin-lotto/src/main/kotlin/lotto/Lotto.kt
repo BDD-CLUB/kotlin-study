@@ -1,9 +1,17 @@
 package lotto
 
+import lotto.util.*
+
 class Lotto(private val numbers: List<Int>) {
+
     init {
-        require(numbers.size == 6)
+        numbers.checkLottoSize()
+        numbers.checkDuplication()
+        numbers.checkInRange()
     }
 
-    // TODO: 추가 기능 구현
+    fun printNumbers() {
+        println(numbers.toString())
+    }
+
 }
