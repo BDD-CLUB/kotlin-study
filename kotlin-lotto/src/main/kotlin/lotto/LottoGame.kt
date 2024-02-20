@@ -13,10 +13,10 @@ class LottoGame {
         printLottoList(lottoList)
 
         val lottoPrizeNumbers = getLottoPrizeNumbers()
-//        println(lottoPrizeNumbers)
 
         val lottoWinningStatistics = LottoWinningStatistics.of(lottoList, lottoPrizeNumbers)
-//        println(lottoWinningStatistics)
+
+        lottoWinningStatistics.print()
 
     }
 
