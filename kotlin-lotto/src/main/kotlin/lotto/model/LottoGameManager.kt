@@ -33,5 +33,4 @@ class LottoGameManager(
         lottoController.announceResult(lottoResultList, purchaseAmount)
     }
 
-
 }

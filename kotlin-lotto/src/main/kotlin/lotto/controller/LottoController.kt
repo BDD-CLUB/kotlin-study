@@ -30,12 +30,10 @@ class LottoController(
 
     fun enterWinningNumbers(): List<Int> {
         lottoGameMessageView.announceEnterWinningNumbers()
-        val winningNumbers = (Console.readLine()
+        return (Console.readLine()
                 ?.split(",")
                 ?.map { it.toInt() }
                 ?: throw IllegalArgumentException("[ERROR] 올바른 당첨 번호를 입력해 주세요."))
-
-        return winningNumbers
 
     }
 
