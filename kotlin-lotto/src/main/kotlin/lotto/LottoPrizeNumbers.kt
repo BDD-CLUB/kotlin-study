@@ -1,17 +1,10 @@
 package lotto
 
 class LottoPrizeNumbers(
-    private val baseNumbers: List<Int>,
-    private val bonusNumber: Int,
+    val baseNumbers: List<Int>,
+    val bonusNumber: Int,
 ) {
     init {
         require(baseNumbers.size == 6)
     }
-
-    val getBaseNumbers
-        get() = baseNumbers
-
-    val getBonusNumber
-        get() = bonusNumber
-
 }

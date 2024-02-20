@@ -49,8 +49,8 @@ class LottoPrizeStatistics(
             lottoPrizeNumbers: LottoPrizeNumbers,
             statistics: LottoPrizeStatistics
         ) {
-            val matchedBaseNumberCount = lotto.numbers.toSet().intersect(lottoPrizeNumbers.getBaseNumbers.toSet()).size
-            val hitBonusNumber = lottoPrizeNumbers.getBonusNumber in lotto.numbers
+            val matchedBaseNumberCount = lotto.numbers.toSet().intersect(lottoPrizeNumbers.baseNumbers.toSet()).size
+            val hitBonusNumber = lottoPrizeNumbers.bonusNumber in lotto.numbers
 
             when (matchedBaseNumberCount) {
                 6 -> statistics.firstPrizeStatistic.addCount()
