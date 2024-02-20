@@ -7,6 +7,7 @@ class InputManager {
     fun getPurchaseAmount(): Int {
         val purchaseAmount = getInput().toIntValue()
         purchaseAmount.checkDividable()
+        purchaseAmount.checkPositive()
         return purchaseAmount / LOTTO_AMOUNT
     }
 

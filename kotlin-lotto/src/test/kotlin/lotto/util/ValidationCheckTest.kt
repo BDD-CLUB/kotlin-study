@@ -1,4 +1,4 @@
-package lotto
+package lotto.util
 
 import lotto.util.*
 import org.assertj.core.api.Assertions.assertThatNoException
@@ -36,6 +36,21 @@ class ValidationCheckTest {
         assertThrows<IllegalArgumentException> {
             val value = 12345
             value.checkDividable()
+        }
+    }
+
+    @Test
+    fun `양수인가 성공`() {
+        val value = 10000
+        value.checkPositive()
+        assertThatNoException()
+    }
+
+    @Test
+    fun `양수인가 실패`() {
+        assertThrows<IllegalArgumentException> {
+            val value = 0
+            value.checkPositive()
         }
     }
 
