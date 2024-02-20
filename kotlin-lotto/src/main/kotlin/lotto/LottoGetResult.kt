@@ -1,9 +1,7 @@
 package lotto
 
 import lotto._enums.LottoResult
-import lotto.util.LOTTO_AMOUNT
-import lotto.util.printProfitRateMessage
-import lotto.util.roundTwo
+import lotto.util.*
 
 class LottoGetResult(
     private val lottoBuyer: LottoBuyer,
@@ -27,6 +25,7 @@ class LottoGetResult(
     }
 
     fun printResult() {
+        printResultMessage()
         for (result in LottoResult.values()) {
             val count = lottoResult.count { it == result }
             val message = result.getMessage(count)
