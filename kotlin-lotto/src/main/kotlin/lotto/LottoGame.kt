@@ -81,6 +81,9 @@ class LottoGame {
             if (numbers.size != 6) {
                 throw IllegalArgumentException("[ERROR] 입력된 숫자의 개수가 6개가 아닙니다. 정확히 6개의 숫자를 입력해야 합니다.")
             }
+            if (numbers.toSet().size != numbers.size) {
+            throw IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다. 모든 숫자는 고유해야 합니다.")
+            }
         }
     }
 
