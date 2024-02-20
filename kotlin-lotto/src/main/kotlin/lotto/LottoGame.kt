@@ -8,6 +8,8 @@ class LottoGame {
 
         println("구입 금액을 입력해 주세요.")
         val amount: Int = getAmount()
+
+        repeat(amount) { lottoList.add(Lotto())}
     }
 
     private fun getAmount(): Int {
