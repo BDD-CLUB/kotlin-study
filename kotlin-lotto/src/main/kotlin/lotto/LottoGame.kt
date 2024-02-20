@@ -16,8 +16,11 @@ class LottoGame {
 
         printLottoList(lottoList)
 
+        val lottoPrizeNumbers = getLottoPrizeNumbers()
+        print(lottoPrizeNumbers)
 
     }
+
 
     private fun getAmount(): Int {
         while (true) {
@@ -31,6 +34,59 @@ class LottoGame {
                 println("구입 금액을 다시 입력해 주세요.")
             }
         }
+    }
+
+    private fun getLottoPrizeNumbers(): LottoPrizeNumbers {
+        val lottoPrizeBaseNumber = getLottoPrizeBaseNumbers()
+        val lottoPrizeBonusNumber = getLottoPrizeBonusNumber()
+        return LottoPrizeNumbers(
+            baseNumbers = lottoPrizeBaseNumber,
+            bonusNumber = lottoPrizeBonusNumber
+        )
+    }
+
+    private fun getLottoPrizeBonusNumber(): Int {
+        println("보너스 번호를 입력해 주세요.")
+        while (true) {
+            try {
+                val lottoPrizeBonusNumberInput = Console.readLine()
+                return getValidLottoPrizeBonusNumbers(lottoPrizeBonusNumberInput)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+                println("보너스 번호를 다시 입력해 주세요.")
+            }
+        }
+    }
+
+    private fun getLottoPrizeBaseNumbers(): List<Int> {
+        println("당첨 번호를 입력해 주세요.")
+        while (true) {
+            try {
+                val lottoPrizeBaseNumberInput = Console.readLine()
+                return getValidLottoPrizeBaseNumbers(lottoPrizeBaseNumberInput)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+                println("당첨 번호를 다시 입력해 주세요.")
+            }
+        }
+    }
+
+    private fun getValidLottoPrizeBaseNumbers(input: String): List<Int> {
+        return input.split(",").map { part ->
+            part.toIntOrNull()
+                ?.takeIf { it in 1..45 }
+                ?: throw IllegalArgumentException("[ERROR] ${part}은(는) 1부터 45 사이의 숫자여야 합니다.")
+        }.also { numbers ->
+            if (numbers.size != 6) {
+                throw IllegalArgumentException("[ERROR] 입력된 숫자의 개수가 6개가 아닙니다. 정확히 6개의 숫자를 입력해야 합니다.")
+            }
+        }
+    }
+
+    private fun getValidLottoPrizeBonusNumbers(input: String): Int {
+        return input.toIntOrNull()
+                ?.takeIf { it in 1..45 }
+                ?: throw IllegalArgumentException("[ERROR] {$input}은(는) 1부터 45 사이의 숫자여야 합니다.")
     }
 
     private fun getValidInput(input: String): Int {
