@@ -6,25 +6,8 @@ import kotlin.reflect.KFunction
 import kotlin.reflect.KParameter
 import kotlin.reflect.cast
 
-object ContainerV1 {
-    // 등록한 클래스를 보관! = KClass를 보관
 
-    private val registeredClasses = mutableSetOf<KClass<*>>()
-
-    fun register(clazz: KClass<*>) {
-        registeredClasses.add(clazz)
-    }
-
-    fun <T : Any> getInstance(type: KClass<T>) : T =
-            registeredClasses.firstOrNull { clazz -> clazz == type}
-                ?.let { clazz -> clazz.constructors.first().call() as T }
-                ?: throw IllegalArgumentException("해당 인스턴스 타입을 찾을 수 없습니다.")
-
-}
-
-object ContainerV2 {
-    // 등록한 클래스를 보관! = KClass를 보관
-
+object DIContainer {
     private val registeredClasses = mutableSetOf<KClass<*>>()
     private val cachedInstances = mutableMapOf<KClass<*>, Any>()
 
@@ -56,7 +39,6 @@ object ContainerV2 {
 
     // clazz의 constructor 들 중, 사용할 수 있는 constructor
     // constructor 에 넣어야 하는 타입들이 모두 등록된 경우(컨테이너에서 관리하고 있는 경우를 의미)
-
     private fun <T : Any> findUsableConstructor(clazz: KClass<T>): KFunction<T> =
             clazz.constructors.firstOrNull { constructor -> constructor.parameters.isAllRegistered }
                     ?: throw IllegalArgumentException("사용할 수 있는 생성자가 없습니다")
@@ -66,10 +48,10 @@ object ContainerV2 {
 
 }
 
-fun start(clazz: KClass<*>) {
+fun componentScan(clazz: KClass<*>) {
     val reflections = Reflections(clazz.packageName)
     val jClasses = reflections.getTypesAnnotatedWith(Component::class.java)
-    jClasses.forEach { jClasses -> ContainerV2.register(jClasses.kotlin) }
+    jClasses.forEach { jClasses -> DIContainer.register(jClasses.kotlin) }
 }
 
 private val KClass<*>.packageName: String
@@ -78,25 +60,3 @@ private val KClass<*>.packageName: String
         val hierarchy = qualifiedName.split(".")
         return hierarchy.subList(0, hierarchy.lastIndex).joinToString(".")
     }
-
-@Component
-class AService {
-    fun print() {
-        println("A Service 입니다")
-    }
-}
-
-@Component
-class BService (
-        private val aService: AService,
-        private val cService: CService?,
-) {
-
-    constructor(aService: AService): this(aService, null)
-
-    fun print() {
-        this.aService.print()
-    }
-}
-
-class CService

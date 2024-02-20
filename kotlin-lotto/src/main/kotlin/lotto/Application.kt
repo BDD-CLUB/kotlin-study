@@ -1,13 +1,17 @@
 package lotto
 
-import lotto.global.BService
-import lotto.global.ContainerV2
-import lotto.global.start
+import lotto.controller.LottoController
+import lotto.global.DIContainer
+import lotto.global.componentScan
+import lotto.model.LottoGameManager
+import lotto.view.LottoGameMessageView
+
+class Application
 
 fun main() {
+    componentScan(Application::class)
 
-    start(Lotto::class)
-    val instance = ContainerV2.getInstance(Lotto::class)
-    instance.printHello()
+    val lottoGameManager = DIContainer.getInstance(LottoGameManager::class)
+    lottoGameManager.run()
 
 }
