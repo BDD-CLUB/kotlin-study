@@ -8,8 +8,11 @@ class Lotto(
     init {
         require(numbers.size == 6)
     }
+    val getLotto
+        get() = numbers
 
     val getSortedLotto
         get() = numbers.sorted()
+
 
 }

@@ -8,4 +8,10 @@ data class LottoPrizeNumbers(
         require(baseNumbers.size == 6)
     }
 
+    val getBaseNumbers
+        get() = baseNumbers
+
+    val getBonusNumber
+        get() = bonusNumber
+
 }
