@@ -9,7 +9,14 @@ class LottoGame {
         println("구입 금액을 입력해 주세요.")
         val amount: Int = getAmount()
 
+        println()
+        println("${amount}개를 구매했습니다.")
+
         repeat(amount) { lottoList.add(Lotto())}
+
+        printLottoList(lottoList)
+
+
     }
 
     private fun getAmount(): Int {
@@ -36,4 +43,11 @@ class LottoGame {
 
         return validInput
     }
+
+    private fun printLottoList(lottoList: List<Lotto>) {
+        for (lotto in lottoList) {
+            println(lotto.getSortedLotto)
+        }
+    }
+
 }

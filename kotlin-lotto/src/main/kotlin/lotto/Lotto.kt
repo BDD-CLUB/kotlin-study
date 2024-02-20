@@ -9,4 +9,7 @@ class Lotto(
         require(numbers.size == 6)
     }
 
+    val getSortedLotto
+        get() = numbers.sorted()
+
 }
