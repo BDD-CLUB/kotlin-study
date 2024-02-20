@@ -5,6 +5,6 @@ class LottoPrizeNumbers(
     val bonusNumber: Int,
 ) {
     init {
-        require(baseNumbers.size == 6)
+        require(baseNumbers.size == NUMBER_OF_LOTTO_NUMBERS)
     }
 }

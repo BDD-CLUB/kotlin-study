@@ -72,7 +72,7 @@ class LottoPrizeStatistic(
     var count: Int,
 ) {
     init {
-        require(count in 0..6)
+        require(count in 0..LOTTO_NUMBERS_COUNT)
     }
 
     fun addCount() {

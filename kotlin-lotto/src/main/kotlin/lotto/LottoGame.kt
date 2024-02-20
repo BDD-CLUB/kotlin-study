@@ -2,6 +2,11 @@ package lotto
 
 import camp.nextstep.edu.missionutils.Console
 
+const val LOTTO_MIN_NUMBER = 1
+const val LOTTO_MAX_NUMBER = 45
+const val LOTTO_NUMBERS_COUNT = 6
+const val LOTTO_PRICE = 1000
+
 class LottoGame {
     fun start() {
         val lottoList = mutableListOf<Lotto>()
@@ -15,10 +20,9 @@ class LottoGame {
         val lottoPrizeNumbers = getLottoPrizeNumbers()
 
         val lottoPrizeStatistics = LottoPrizeStatistics.of(lottoList, lottoPrizeNumbers)
-
         lottoPrizeStatistics.printStatistics()
-        lottoPrizeStatistics.printROI()
 
+        lottoPrizeStatistics.printROI()
     }
 
     private fun getAmount(): Int {
@@ -76,11 +80,11 @@ class LottoGame {
     private fun getValidLottoPrizeBaseNumbers(input: String): List<Int> {
         return input.split(",").map { part ->
             part.toIntOrNull()
-                ?.takeIf { it in 1..45 }
-                ?: throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+                ?.takeIf { it in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER }
+                ?: throw IllegalArgumentException("[ERROR] 로또 번호는 ${LOTTO_MIN_NUMBER}부터 ${LOTTO_MAX_NUMBER} 사이의 숫자여야 합니다.")
         }.also { numbers ->
-            if (numbers.size != 6) {
-                throw IllegalArgumentException("[ERROR] 입력된 숫자의 개수가 6개가 아닙니다. 정확히 6개의 숫자를 입력해야 합니다.")
+            if (numbers.size != LOTTO_NUMBERS_COUNT) {
+                throw IllegalArgumentException("[ERROR] 입력된 숫자의 개수가 ${LOTTO_NUMBERS_COUNT}개가 아닙니다. 정확히 ${LOTTO_NUMBERS_COUNT}개의 숫자를 입력해야 합니다.")
             }
             if (numbers.toSet().size != numbers.size) {
             throw IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다. 모든 숫자는 고유해야 합니다.")
@@ -90,19 +94,19 @@ class LottoGame {
 
     private fun getValidLottoPrizeBonusNumbers(input: String): Int {
         return input.toIntOrNull()
-                ?.takeIf { it in 1..45 }
-                ?: throw IllegalArgumentException("[ERROR] {$input}은(는) 1부터 45 사이의 숫자여야 합니다.")
+                ?.takeIf { it in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER }
+                ?: throw IllegalArgumentException("[ERROR] {$input}은(는) ${LOTTO_MIN_NUMBER}부터 ${LOTTO_MAX_NUMBER} 사이의 숫자여야 합니다.")
     }
 
     private fun getValidAmountByPrice(input: String): Int {
         val validInput = input.toIntOrNull()
-            ?: throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. 1000원 단위 숫자만 입력 가능합니다.")
+            ?: throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. ${LOTTO_PRICE}원 단위 숫자만 입력 가능합니다.")
 
-        if (validInput % 1000 != 0 || validInput <= 0) {
-            throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. 1000원 단위 숫자만 입력 가능합니다.")
+        if (validInput % LOTTO_PRICE != 0 || validInput <= 0) {
+            throw IllegalArgumentException("[ERROR]: ${input}은(는) 유효하지 않은 구입 금액입니다. ${LOTTO_PRICE}원 단위 숫자만 입력 가능합니다.")
         }
 
-        return validInput / 1000
+        return validInput / LOTTO_PRICE
     }
 
     private fun printAmount(amount: Int) {
