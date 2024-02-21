@@ -1,9 +1,9 @@
 package lotto
 
-class Lotto(private val numbers: List<Int>) {
+class Lotto(val numbers: List<Number>) {
     init {
         require(numbers.size == 6)
     }
-
-    // TODO: 추가 기능 구현
 }
+
+
