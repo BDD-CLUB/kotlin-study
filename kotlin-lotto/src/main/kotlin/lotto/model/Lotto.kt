@@ -24,7 +24,7 @@ class Lottos(val lottos: List<Lotto>) {
     }
 }
 
-class Lotto(val numbers: List<LottoNumber>) {
+class Lotto(private val numbers: List<LottoNumber>) {
     init {
         requireLotto(numbers.size == LOTTO_SIZE)
         requireLotto(numbers.size == numbers.toSet().size)
@@ -36,6 +36,10 @@ class Lotto(val numbers: List<LottoNumber>) {
             Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_INCLUDE, LOTTO_MAX_INCLUDE, LOTTO_SIZE)
                 .map { LottoNumber(it) })
     }
+
+    fun contains(number: LottoNumber) = this.numbers.contains(number)
+
+    fun count(predicate: (LottoNumber) -> Boolean) = this.numbers.count(predicate)
 
     override fun toString(): String {
         return numbers.sortedBy { it.number }
