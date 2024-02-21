@@ -38,7 +38,8 @@ class Lotto(val numbers: List<LottoNumber>) {
     }
 
     override fun toString(): String {
-        return numbers.joinToString(separator = ", ", prefix = "[", postfix = "]")
+        return numbers.sortedBy { it.number }
+            .joinToString(separator = ", ", prefix = "[", postfix = "]")
     }
 }
 
