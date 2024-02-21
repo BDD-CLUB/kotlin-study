@@ -18,10 +18,15 @@ class LottoStore {
         do {
             numbers = readLine()?.split(",")?.mapNotNull { it.trim().toIntOrNull() } ?: emptyList()
 
-            require(numbers.size == LOTTO_NUMBERS_PER_TICKET) { IllegalArgumentException("[ERROR] 정확히 ${LottoStore.LOTTO_NUMBERS_PER_TICKET}개의 숫자를 입력해야 합니다.") }
-            numbers.forEach { number ->
-                require(number in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX) { IllegalArgumentException("[ERROR] 숫자는 ${LottoStore.LOTTO_NUMBER_MIN}과 ${LottoStore.LOTTO_NUMBER_MAX} 사이여야 합니다.") }
+            require(numbers.size == LOTTO_NUMBERS_PER_TICKET) {
+                IllegalArgumentException("[ERROR] 정확히 ${LOTTO_NUMBERS_PER_TICKET}개의 숫자를 입력해야 합니다.")
             }
+            numbers.forEach { number ->
+                require(number in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX) {
+                    IllegalArgumentException("[ERROR] 숫자는 ${LOTTO_NUMBER_MIN}과 ${LOTTO_NUMBER_MAX} 사이여야 합니다.")
+                }
+            }
+
         } while (numbers.size != LOTTO_NUMBERS_PER_TICKET
             || !numbers.all { it in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX }
         )
