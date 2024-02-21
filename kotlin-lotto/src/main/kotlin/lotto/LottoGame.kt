@@ -13,11 +13,7 @@ class LottoGame {
         println("${lottoCount}개를 구매했습니다.")
         val generateLottoTickets = lottoStore.generateLottoTickets(lottoCount)
 
-        for (generateLottoTicket in generateLottoTickets) {
-            println(generateLottoTicket.numbers)
-        }
-
-        println()
+        printGenerateTickets(generateLottoTickets)
 
         val winningNumbers = lottoStore.askWinningNumbers()
         val bonusNumber = lottoStore.askBonusNumber()
@@ -28,10 +24,10 @@ class LottoGame {
         printGameResult(prizeList, returnRate)
     }
 
-    fun getReturnRate(purchasePrice: Int, prizeMoney: Long): Double =
+    private fun getReturnRate(purchasePrice: Int, prizeMoney: Long): Double =
         (prizeMoney.toDouble() / purchasePrice.toDouble() * 100.0)
 
-    fun printGameResult(prizeList: List<LottoPrize>, returnRate: Double) {
+    private fun printGameResult(prizeList: List<LottoPrize>, returnRate: Double) {
         println("당첨 통계")
         println("---")
 
@@ -49,6 +45,13 @@ class LottoGame {
         }
 
         println("총 수익률은 ${returnRate}%입니다.")
+    }
+
+    private fun printGenerateTickets(generateLottoTickets: List<Lotto>) {
+        for (generateLottoTicket in generateLottoTickets) {
+            println(generateLottoTicket.numbers)
+        }
+        println()
     }
 }
 
