@@ -8,7 +8,7 @@ class WinningStatistics(lottos: Lottos, winningLotto: WinningLotto) {
 
     override fun toString(): String {
         return Rank.entries.joinToString("\n") { "$it - ${result[it]}개" } + "\n" +
-                "총 수익률은 ${DecimalFormat("#,###.##").format(result.rateOfReturn)}%입니다."
+                "총 수익률은 ${DecimalFormat("#,##0.0").format(result.rateOfReturn)}%입니다."
     }
 }
 
