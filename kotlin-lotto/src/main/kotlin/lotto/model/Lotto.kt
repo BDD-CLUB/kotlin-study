@@ -15,7 +15,7 @@ class Lottos(val lottos: List<Lotto>) {
     companion object {
         fun generate(purchasePrice: PurchasePrice): Lottos {
             val lottoCount = purchasePrice.price / LOTTO_PRICE
-            return Lottos((1..lottoCount).map { Lotto.generate() })
+            return Lottos(List(lottoCount) { Lotto.generate() })
         }
     }
 
