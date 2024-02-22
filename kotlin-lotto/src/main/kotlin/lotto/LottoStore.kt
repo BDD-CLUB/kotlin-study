@@ -43,23 +43,25 @@ class LottoStore {
             bonusNumber = Console.readLine().toInt()
             require(bonusNumber in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX) { IllegalArgumentException("[ERROR] 숫자는 ${LOTTO_NUMBER_MIN}과 ${LOTTO_NUMBER_MAX} 사이여야 합니다.") }
         } while (bonusNumber !in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX)
-
         println()
 
         return bonusNumber
     }
 
     fun receivePaymentForLotto(): Pair<Int, Int> {
-        var purchasePrice: Int? = null
-        while (purchasePrice == null) {
-            println("구입금액을 입력해 주세요.")
-            val input = Console.readLine()
+        var purchasePrice: Int?
+        println("구입급액을 입력해주세요.")
+        do {
             try {
+                val input = Console.readLine()
                 purchasePrice = input?.toInt()
             } catch (e: NumberFormatException) {
-                println("[ERROR] 유효한 숫자가 아닙니다. 다시 시도해주세요.")
+                println("[ERROR] 올바른 숫자를 입력해주세요.")
+                purchasePrice = null
             }
-        }
+
+        } while (purchasePrice == null)
+
         println()
         return Pair(purchasePrice, purchasePrice / LOTTO_PRICE)
     }
