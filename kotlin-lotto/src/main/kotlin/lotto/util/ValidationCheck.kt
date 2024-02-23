@@ -1,5 +1,10 @@
 package lotto.util
 
+import lotto._const.LOTTO_AMOUNT
+import lotto._const.LOTTO_MAX_VALUE
+import lotto._const.LOTTO_MIN_VALUE
+import lotto._const.LOTTO_SIZE
+
 fun String.toIntValue() = this.toIntOrNull() ?: throw IllegalArgumentException()
 
 fun Int.checkDividable() = require(this % LOTTO_AMOUNT == 0)

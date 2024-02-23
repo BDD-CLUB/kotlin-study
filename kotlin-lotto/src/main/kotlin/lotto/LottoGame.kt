@@ -22,7 +22,8 @@ class LottoGame {
     private fun generateLottoNumbers() {
         val amount = lottoBuyer.lottoBuyerDTO.purchaseAmount
         lottoGenerator.generate(amount)
-        lottoGenerator.printLottoList()
+        printLottoSizeMessage(lottoGenerator.lottoList.size)
+        println(lottoGenerator.toString())
     }
 
     private fun getLottoNumber() {
@@ -34,8 +35,12 @@ class LottoGame {
     }
 
     private fun printLottoResult() {
-        val lottoGetResult = LottoGetResult(lottoBuyer, lottoGenerator)
-        lottoGetResult.printResult()
+        val getLottoResult = GetLottoResult(lottoBuyer, lottoGenerator)
+        val lottoResult = getLottoResult.getResult()
+        printLottoResultMessage(lottoResult)
+
+        val profitRate = getLottoResult.getProfitRate()
+        printProfitRateMessage(profitRate)
     }
 
 }

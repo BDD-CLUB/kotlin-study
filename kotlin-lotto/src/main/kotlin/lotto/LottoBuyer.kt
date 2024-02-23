@@ -1,14 +1,15 @@
 package lotto
 
+import lotto._const.*
 import lotto.util.*
 
 
-class LottoBuyer {
+class LottoBuyer(
+    private val inputManager: InputManager = InputManager()
+) {
 
     private var _lottoBuyerDTO = LottoBuyerDTO()
     val lottoBuyerDTO get() = _lottoBuyerDTO
-
-    private val inputManager = InputManager()
 
     fun getPurchaseAmount() {
         try {

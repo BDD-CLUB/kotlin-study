@@ -1,6 +1,8 @@
 package lotto.util
 
 import camp.nextstep.edu.missionutils.Console
+import lotto._const.DELIMITER
+import lotto._const.LOTTO_AMOUNT
 
 class InputManager {
 

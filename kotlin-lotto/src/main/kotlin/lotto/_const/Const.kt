@@ -1,4 +1,4 @@
-package lotto.util
+package lotto._const
 
 const val ERROR_PREFIX = "[ERROR]"
 

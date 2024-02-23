@@ -11,8 +11,8 @@ class Lotto(private val numbers: List<Int>) {
         numbers.checkInRange()
     }
 
-    fun printNumbers() {
-        println(numbers.toString())
+    override fun toString(): String {
+        return numbers.toString()
     }
 
     fun getResult(lottoBuyerDTO: LottoBuyerDTO): LottoResult? {

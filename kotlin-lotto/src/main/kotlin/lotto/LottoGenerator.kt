@@ -1,7 +1,9 @@
 package lotto
 
 import camp.nextstep.edu.missionutils.Randoms
-import lotto.util.*
+import lotto._const.LOTTO_MAX_VALUE
+import lotto._const.LOTTO_MIN_VALUE
+import lotto._const.LOTTO_SIZE
 
 class LottoGenerator {
 
@@ -16,10 +18,7 @@ class LottoGenerator {
         }
     }
 
-    fun printLottoList() {
-        printLottoSizeMessage(lottoList.size)
-        for (lotto in lottoList){
-            lotto.printNumbers()
-        }
+    override fun toString(): String {
+        return lottoList.joinToString("\n")
     }
 }

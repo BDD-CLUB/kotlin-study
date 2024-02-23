@@ -7,11 +7,11 @@ enum class LottoResult(
     private val isBonusCorrect: Boolean?,
     val price: Int,
 ) {
-    THREE_CORRECT(3, null, 5000),
-    FOUR_CORRECT(4, null, 50000),
-    FIVE_CORRECT(5, false, 1500000),
-    FIVE_BONUS_CORRECT(5, true, 30000000),
-    SIX_CORRECT(6, null, 2000000000),
+    THREE_CORRECT(3, null, 5_000),
+    FOUR_CORRECT(4, null, 50_000),
+    FIVE_CORRECT(5, false, 1_500_000),
+    FIVE_BONUS_CORRECT(5, true, 30_000_000),
+    SIX_CORRECT(6, null, 2_000_000_000),
     ;
 
     fun getMessage(count: Int) : String {
@@ -25,7 +25,7 @@ enum class LottoResult(
 
     companion object {
         fun get(value: Int, isBonusCorrect: Boolean): LottoResult? {
-            return LottoResult.values().firstOrNull {
+            return entries.firstOrNull {
                 it.num == value && (it.isBonusCorrect == isBonusCorrect || it.isBonusCorrect == null)
             }
         }

@@ -2,7 +2,7 @@ package lotto.lottoBuyerTest
 
 import camp.nextstep.edu.missionutils.test.NsTest
 import lotto.LottoBuyer
-import lotto.util.ERROR_PREFIX
+import lotto._const.ERROR_PREFIX
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
