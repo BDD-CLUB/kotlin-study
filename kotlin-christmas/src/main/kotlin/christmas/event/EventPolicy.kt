@@ -5,6 +5,7 @@ import christmas.menu.MenuType
 import christmas.menu.MenuWithCount
 import christmas.model.Price
 import christmas.model.UserOrderInfo
+import org.assertj.core.util.VisibleForTesting
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month
@@ -101,7 +102,8 @@ enum class EventPolicy {
     private fun isInEventDate(userOrderInfo: UserOrderInfo) =
         userOrderInfo.estimatedVisitDate.year == 2023 && userOrderInfo.estimatedVisitDate.month == Month.DECEMBER
 
-    protected abstract fun isOwnSupported(userOrderInfo: UserOrderInfo): Boolean
+    @VisibleForTesting
+    internal abstract fun isOwnSupported(userOrderInfo: UserOrderInfo): Boolean
 
     abstract fun getBenefit(userOrderInfo: UserOrderInfo): EventType
 
