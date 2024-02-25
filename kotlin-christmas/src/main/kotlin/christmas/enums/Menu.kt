@@ -6,9 +6,9 @@ enum class Menu (
     val category: Category
 ) {
     // 애피타이저
-    MUSHROOM_SOUP("양송이수프", 6_000, Category.Appetizer),
-    TAPAS("타파스", 5_500, Category.Appetizer),
-    CAESAR_SALAD("시저샐러드", 8_800, Category.Appetizer),
+    MUSHROOM_SOUP("양송이수프", 6_000, Category.APPETIZER),
+    TAPAS("타파스", 5_500, Category.APPETIZER),
+    CAESAR_SALAD("시저샐러드", 8_800, Category.APPETIZER),
 
     // 메인
     T_BONE_STEAK("티본스테이크", 55_000, Category.MAIN),
@@ -23,13 +23,12 @@ enum class Menu (
     // 음료
     ZERO_COKE("제로콜라", 3_000, Category.BEVERAGE),
     RED_WINE("레드와인", 60_000, Category.BEVERAGE),
-    Champagne("샴페인", 25_000, Category.BEVERAGE),
+    CHAMPAGNE("샴페인", 25_000, Category.BEVERAGE),
     ;
 
     companion object {
         fun getByKoreanName(name: String): Menu {
-            return entries.firstOrNull { it.koreanName == name }
-                ?: throw IllegalArgumentException()
+            return entries.firstOrNull { it.koreanName == name } ?: throw IllegalArgumentException()
         }
     }
 }
@@ -37,7 +36,7 @@ enum class Menu (
 enum class Category(
     private val koreanName: String
 ) {
-    Appetizer("애피타이저"),
+    APPETIZER("애피타이저"),
     MAIN("메인"),
     DESSERT("디저트"),
     BEVERAGE("음료"),
