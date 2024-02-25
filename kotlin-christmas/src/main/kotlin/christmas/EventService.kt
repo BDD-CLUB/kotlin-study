@@ -1,6 +1,7 @@
 package christmas
 
 import christmas.data.*
+import christmas.enums.Badge
 import christmas.enums.Menu
 import christmas.util.*
 

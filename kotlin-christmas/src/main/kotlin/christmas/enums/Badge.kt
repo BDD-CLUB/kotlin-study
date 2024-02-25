@@ -1,4 +1,4 @@
-package christmas.data
+package christmas.enums
 
 enum class Badge(
     val badgeName: String,

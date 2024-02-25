@@ -16,17 +16,7 @@ class EventController(
         outputView.printMenuList(menuList)
 
         val eventService = EventService(date, menuList)
-        printResult(eventService)
-    }
-
-    private fun printResult(eventService: EventService) {
-        val benefit = eventService.eventBenefit
-        outputView.printTotalAmountBeforeBenefit(benefit.totalAmountBeforeBenefit)
-        outputView.printPresentationMenu(benefit.presentationMenu)
-        outputView.printBenefits(benefit)
-        outputView.printTotalBenefit(benefit.getBenefit())
-        outputView.printTotalAmountAfterBenefit(benefit.getTotalAmountAfterBenefit())
-        outputView.printBadge(benefit.badge)
+        outputView.printResult(eventService.eventBenefit)
     }
 
     private fun readDate(): Int {

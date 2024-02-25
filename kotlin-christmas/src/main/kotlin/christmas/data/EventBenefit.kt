@@ -1,5 +1,7 @@
 package christmas.data
 
+import christmas.enums.Badge
+
 data class EventBenefit(
     val discountBenefit: DiscountBenefit = DiscountBenefit(),
     val totalAmountBeforeBenefit: Int = 0,
