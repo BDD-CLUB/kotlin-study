@@ -3,6 +3,8 @@ package christmas.util
 const val ERROR_PREFIX = "[ERROR]"
 const val NOTHING = "없음"
 
+const val EVENT_MONTH = 12
+
 const val MIN_DATE = 1
 const val MAX_DATE = 31
 
