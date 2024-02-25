@@ -1,9 +1,26 @@
 package lotto
 
+import lotto._enums.LottoResult
+import lotto.util.*
+
 class Lotto(private val numbers: List<Int>) {
+
     init {
-        require(numbers.size == 6)
+        numbers.checkLottoSize()
+        numbers.checkDuplication()
+        numbers.checkInRange()
     }
 
-    // TODO: 추가 기능 구현
+    override fun toString(): String {
+        return numbers.toString()
+    }
+
+    fun getResult(lottoBuyerDTO: LottoBuyerDTO): LottoResult? {
+        val correctNum = numbers.count { num ->
+            lottoBuyerDTO.winningNumber.contains(num)
+        }
+        val isBonusCorrect = numbers.contains(lottoBuyerDTO.bonusNumber)
+        return LottoResult.get(correctNum, isBonusCorrect)
+    }
+
 }
