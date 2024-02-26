@@ -9,9 +9,19 @@ class EventPlanner {
         println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.")
     }
 
-    fun receiveVisitDate(): String {
+    fun receiveVisitDate(): Int {
         println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)")
-        return Console.readLine()
+
+        do {
+            val date = Console.readLine().toIntOrNull()
+            if (date == null || date !in 1..31) {
+                println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.")
+                continue
+            }
+            return date
+        } while (date !in 1..31)
+
+        return 0
     }
 
     fun takeOrder(): List<List<String>> {
@@ -38,7 +48,7 @@ class EventPlanner {
     }
 
     fun showGiftList(activeEventBenefits: List<DiscountResult>) {
-        println("<증정품>")
+        println("<증정 메뉴>")
 
         val hasGiftEvent = activeEventBenefits.any {
             it.discountCode == Event.Discount.GIFT_EVENT
@@ -58,7 +68,7 @@ class EventPlanner {
     }
 
     fun showTotalBenefitsPrice(totalBenefits: Int) {
-        println("<총 혜택 금액>")
+        println("<총혜택 금액>")
 
         println(
             if (totalBenefits == 0) {
@@ -76,12 +86,12 @@ class EventPlanner {
                 }) totalBenefits - Event.Discount.GIFT_EVENT.amount
             else totalBenefits
 
-        println("<할인 후 결제 예상 금액>")
+        println("<할인 후 예상 결제 금액>")
         println("${(totalPrice - tangibleBenefit).formatAsCurrency()}원\n")
     }
 
     fun showBadge(activeEventBenefits: Int) {
-        println("<12월 이벤트 뱃지>")
+        println("<12월 이벤트 배지>")
 
         val totalBadge = RewardBadge.findByAmount(activeEventBenefits)
         println(totalBadge?.icon ?: "없음")

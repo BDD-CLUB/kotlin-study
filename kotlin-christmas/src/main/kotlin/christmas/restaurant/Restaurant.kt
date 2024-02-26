@@ -6,7 +6,7 @@ import christmas.util.DiscountResult
 
 class Restaurant(private val eventPlanner: EventPlanner) {
     fun open() {
-        val date = eventPlanner.receiveVisitDate().toInt()
+        val date = eventPlanner.receiveVisitDate()
         val orderList = getMenuItems()
 
         val totalPrice = calculateTotalPrice(orderList)
@@ -16,11 +16,39 @@ class Restaurant(private val eventPlanner: EventPlanner) {
         displayEventOutcome(date, orderList, totalPrice, activeEventBenefits, totalBenefits)
     }
 
-    private fun getMenuItems() = eventPlanner.takeOrder().flatMap { orderItem ->
-        val itemName = orderItem[0]
-        val quantity = orderItem[1].toInt()
-        List(quantity) { items.find { item -> item.name == itemName }!! }
+    //    private fun getMenuItems(): List<MenuItem> {
+//        return eventPlanner.takeOrder().flatMap { orderItem ->
+//            val itemName = orderItem[0]
+//            val quantity = orderItem[1].toInt()
+//
+//            List(quantity) { items.find { item -> item.name == itemName }!! }
+//        }
+//    }
+    fun getMenuItems(): List<MenuItem> {
+        while (true) {
+            val orderItems = eventPlanner.takeOrder()
+
+            if (orderItems.distinctBy { it[0] }.size < orderItems.size) {
+                println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.")
+                continue
+            }
+
+            val menuItems = orderItems.flatMap { orderItem ->
+                val itemName = orderItem[0]
+                val quantity = orderItem.getOrNull(1)?.toIntOrNull()
+
+                if (quantity == null || quantity < 1 || items.none { it.name == itemName }) {
+                    println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.")
+                    return@getMenuItems listOf<MenuItem>()
+                }
+
+                List(quantity) { items.find { item -> item.name == itemName }!! }
+            }
+
+            return menuItems
+        }
     }
+
 
     private fun checkEvent(
         date: Int,
