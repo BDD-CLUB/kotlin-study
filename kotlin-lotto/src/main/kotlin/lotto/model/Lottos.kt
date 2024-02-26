@@ -2,6 +2,10 @@ package lotto.model
 
 class Lottos(private val lottos: List<Lotto>) {
 
+    companion object {
+        const val BONUS_MATCH_COUNT = 5
+    }
+
     val getLottos = lottos
 
     fun getLottoSize(): Int {
@@ -18,9 +22,5 @@ class Lottos(private val lottos: List<Lotto>) {
             }
             WinningLotto.from(matchCount)
         }
-    }
-
-    companion object {
-        const val BONUS_MATCH_COUNT = 5
     }
 }

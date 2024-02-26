@@ -9,6 +9,10 @@ class LottoController(
     private val numberGenerator: NumberGenerator
 ) {
 
+    companion object {
+        const val AMOUNT_UNIT = 1_000
+    }
+
     fun run() {
         val purchaseAmount = getPurchaseAmount()
         val numberOfLotto = purchaseAmount / AMOUNT_UNIT
@@ -66,9 +70,5 @@ class LottoController(
 
     private fun getTotalReturn(winningLottos: List<WinningLotto>, purchaseAmount: Int): Double {
         return ((winningLottos.sumOf { it.amount }.toDouble() / purchaseAmount.toDouble())) * 100
-    }
-
-    companion object {
-        const val AMOUNT_UNIT = 1_000
     }
 }
