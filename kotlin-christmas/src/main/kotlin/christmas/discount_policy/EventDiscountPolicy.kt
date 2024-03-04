@@ -1,13 +1,13 @@
 package christmas.discount_policy
 
-import christmas.dto.OrderMenuDto
+import christmas.domain.OrderMenu
 
 interface EventDiscountPolicy {
 
     val discountPolicyName: String
 
-    fun isSatisfiedBy(orderMenuDto: OrderMenuDto): Boolean
+    fun isSatisfiedBy(orderMenu: OrderMenu): Boolean
 
-    fun calculateDiscountAmount(orderMenuDto: OrderMenuDto): Long
+    fun calculateDiscountAmount(orderMenu: OrderMenu): Long
 
 }

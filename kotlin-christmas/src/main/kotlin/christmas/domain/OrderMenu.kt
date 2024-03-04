@@ -1,12 +1,10 @@
-package christmas.dto
+package christmas.domain
 
 import christmas.discount_policy.EventDiscountPolicy
 import christmas.discount_policy.createEventDiscountPolicy
-import christmas.domain.Badge
-import christmas.domain.Menu
 
 
-class OrderMenuDto(
+class OrderMenu(
         val reservationDate: Int,
         val orderList: Map<Menu, Int>,
 ) {

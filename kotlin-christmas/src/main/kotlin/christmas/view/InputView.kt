@@ -3,7 +3,7 @@ package christmas.view
 import camp.nextstep.edu.missionutils.Console
 import christmas.domain.Menu
 import christmas.domain.MenuType
-import christmas.dto.OrderMenuDto
+import christmas.domain.OrderMenu
 import christmas.global.Component
 
 @Component
@@ -25,7 +25,7 @@ class InputView {
         return visitDay
     }
 
-    fun getOrderMenuAndCount(userVisitDay: Int): OrderMenuDto {
+    fun getOrderMenuAndCount(userVisitDay: Int): OrderMenu {
         val orders = mutableMapOf<Menu, Int>()
         val menuName = Menu.entries.associateBy { it.mainMenuName }
 
@@ -52,7 +52,7 @@ class InputView {
             "$ERROR_PREFIX 20개 이상의 음식은 주문하실 수 없습니다."
         }
 
-        return OrderMenuDto(userVisitDay, orders)
+        return OrderMenu(userVisitDay, orders)
     }
 
 }

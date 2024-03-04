@@ -1,7 +1,7 @@
 package christmas.view
 
 import christmas.domain.Menu
-import christmas.dto.OrderMenuDto
+import christmas.domain.OrderMenu
 import christmas.global.Component
 
 @Component
@@ -22,7 +22,7 @@ class OutputView {
         println("12월 ${userVisitDay}에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n")
     }
 
-    fun printReceipt(ordersDto: OrderMenuDto) {
+    fun printReceipt(ordersDto: OrderMenu) {
         val giveawayMenu = if (ordersDto.giveMenu != Menu.NOTHING) {
             ordersDto.giveMenu.mainMenuName + " 1개"
         } else {
