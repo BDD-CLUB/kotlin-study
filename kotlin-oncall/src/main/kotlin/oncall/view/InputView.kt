@@ -9,10 +9,6 @@ class InputView {
 
 }
 
-fun getEmergencyAssignmentDate() {
-
-}
-
 fun getEmergencyDate(printMessage: () -> Unit, console: () -> String): Pair<Int, Day> {
     while (true) {
         try {
@@ -31,4 +27,23 @@ fun getEmergencyDate(printMessage: () -> Unit, console: () -> String): Pair<Int,
             printMessage()
         }
     }
+}
+
+fun getEmergencyWorker(printMessage: () -> Unit, console: () -> String): List<String> {
+    while (true) {
+        try {
+            printMessage()
+            val userInput = console().split(",")
+
+            require(userInput.all { it.length < 6 }) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
+            require(userInput.distinct().size == userInput.size) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
+            require(userInput.size in 5..35) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
+
+            return userInput
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+
+    }
+
 }

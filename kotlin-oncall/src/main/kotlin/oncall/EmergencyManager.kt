@@ -7,6 +7,7 @@ import oncall.global.Component
 import oncall.view.InputView
 import oncall.view.OutputView
 import oncall.view.getEmergencyDate
+import oncall.view.getEmergencyWorker
 
 @Component
 class EmergencyManager(
@@ -26,25 +27,21 @@ class EmergencyManager(
         println("$emergencyWorkDate")
 
         // STEP2 > 평일 비상 근무자 배정
-        outputView.printWeekdayEmergencyAssignment()
-        val weekdayEmployee = Console.readLine().split(",")
-
-        require(weekdayEmployee.all { it.length < 6 }) { "[ERROR] 5글자 초과" }
-        require(weekdayEmployee.distinct().size == weekdayEmployee.size) { "[ERROR] 중복 닉네임 발생" }
-        require(weekdayEmployee.size in 5..35) { "[ERROR] 최소 5명의 근무자가 유지되어야 합니다." }
+        val weekdayEmployee = getEmergencyWorker(
+                { outputView.printWeekdayEmergencyAssignment().toString() },
+                { Console.readLine() }
+        )
 
         // STEP3 > 주말 비상 근무자 배정
-        outputView.printWeekendEmergencyAssignment()
-        val weekendEmployee = Console.readLine().split(",")
+        val weekendEmployee = getEmergencyWorker(
+                { outputView.printWeekendEmergencyAssignment().toString() },
+                { Console.readLine() }
+        )
 
-        require(weekendEmployee.all { it.length < 6 }) { "[ERROR] 5글자 초과" } // 글자수 예외
-        require(weekendEmployee.distinct().size == weekdayEmployee.size) {"[ERROR] 중복 닉네임 발생" } // 중복 닉네임
-        require(weekendEmployee.size in 5..35) { "[ERROR] 최소 5명의 근무자가 유지되어야 합니다." } // 근무자 수 예외
+        println("$weekdayEmployee, $weekendEmployee")
 
         val work = EmergencyWork(emergencyWorkDate, weekdayEmployee, weekendEmployee)
         val emergencySchedule = EmergencySchedule(work)
-
-
     }
 
 }
