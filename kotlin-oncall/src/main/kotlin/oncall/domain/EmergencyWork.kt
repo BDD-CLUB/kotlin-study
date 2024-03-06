@@ -1,8 +1,7 @@
 package oncall.domain
 
 class EmergencyWork(
-        val month: Int,
-        val startDay: String,
+        val emergencyWorkDate: Pair<Int, Day>,
         val holidayEmployee: List<String>,
         val weekdayEmployee: List<String>,
 ) {

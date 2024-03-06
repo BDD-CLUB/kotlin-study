@@ -1,10 +1,13 @@
 package oncall
 
-import oncall.view.InputView
-import oncall.view.OutputView
+import oncall.global.Container
+
+class Application
 
 fun main() {
 
-    EmergencyManager(InputView(), OutputView()).run()
+    Container.componentScan(Application::class)
+    val emergencyManager = Container.getInstance(EmergencyManager::class)
+    emergencyManager.run()
 
 }
