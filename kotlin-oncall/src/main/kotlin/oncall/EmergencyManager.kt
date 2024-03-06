@@ -10,7 +10,6 @@ import oncall.view.getIntOrThrow
 class EmergencyManager(
         private val inputView: InputView,
         private val outputView: OutputView,
-        private val emergencyWork: EmergencyWork,
 ) {
 
     fun run() {
@@ -27,15 +26,20 @@ class EmergencyManager(
         outputView.printWeekdayEmergencyAssignment()
         val weekdayEmployee = Console.readLine().split(",")
 
+        require(weekdayEmployee.all { it.length < 6 }) { "[ERROR] 5글자 초과" }
+        require(weekdayEmployee.distinct().size == weekdayEmployee.size) { "[ERROR] 중복 닉네임 발생" }
+        require(weekdayEmployee.size in 5..35) { "[ERROR] 최소 5명의 근무자가 유지되어야 합니다." }
+
         // STEP3 > 주말 비상 근무자 배정
         outputView.printWeekendEmergencyAssignment()
         val weekendEmployee = Console.readLine().split(",")
 
+        require(weekendEmployee.all { it.length < 6 }) { "[ERROR] 5글자 초과" } // 글자수 예외
+        require(weekendEmployee.distinct().size == weekdayEmployee.size) {"[ERROR] 중복 닉네임 발생" } // 중복 닉네임
+        require(weekendEmployee.size in 5..35) { "[ERROR] 최소 5명의 근무자가 유지되어야 합니다." } // 근무자 수 예외
 
         val work = EmergencyWork(emergencyWorkDate, emergencyWorkDay, weekdayEmployee, weekendEmployee)
         val emergencySchedule = EmergencySchedule(work)
-
-        println(emergencySchedule.schedule)
 
 
     }
