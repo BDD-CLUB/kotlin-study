@@ -1,6 +1,7 @@
 package oncall.view
 
 import oncall.domain.Day
+import oncall.domain.Month
 import oncall.global.Component
 
 @Component
@@ -9,7 +10,7 @@ class InputView {
 
 }
 
-fun getEmergencyDate(printMessage: () -> Unit, console: () -> String): Pair<Int, Day> {
+fun getEmergencyDate(printMessage: () -> Unit, console: () -> String): Pair<Month, Day> {
     while (true) {
         try {
             val userInput = console().split(",")
@@ -21,7 +22,7 @@ fun getEmergencyDate(printMessage: () -> Unit, console: () -> String): Pair<Int,
             val day = Day.entries.firstOrNull{ it.day == userInput[1] }
                     ?:throw IllegalArgumentException("[ERROR] 제대로 입력해 주세용.")
 
-            return Pair(month, day)
+            return Pair(Month.entries.first { it.month == month }, day)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             printMessage()

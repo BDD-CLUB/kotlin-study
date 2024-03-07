@@ -16,29 +16,21 @@ class EmergencyManager(
 ) {
 
     fun run() {
-
-        // STEP1 > 비상 근무 배정 일
         outputView.printEmergencyAssignment()
         val emergencyWorkDate = getEmergencyDate(
                 printMessage = { outputView.printEmergencyAssignment().toString() },
                 console = { Console.readLine() }
         )
 
-        println("$emergencyWorkDate")
-
-        // STEP2 > 평일 비상 근무자 배정
         val weekdayEmployee = getEmergencyWorker(
                 { outputView.printWeekdayEmergencyAssignment().toString() },
                 { Console.readLine() }
         )
 
-        // STEP3 > 주말 비상 근무자 배정
         val weekendEmployee = getEmergencyWorker(
                 { outputView.printWeekendEmergencyAssignment().toString() },
                 { Console.readLine() }
         )
-
-        println("$weekdayEmployee, $weekendEmployee")
 
         val work = EmergencyWork(emergencyWorkDate, weekdayEmployee, weekendEmployee)
         val emergencySchedule = EmergencySchedule(work)
