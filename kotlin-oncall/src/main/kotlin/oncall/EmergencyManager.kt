@@ -22,23 +22,20 @@ class EmergencyManager(
                 console = { Console.readLine() }
         )
 
-//        val weekdayEmployee = getEmergencyWorker(
-//                { outputView.printWeekdayEmergencyAssignment().toString() },
-//                { Console.readLine() }
-//        )
-//
-//        val weekendEmployee = getEmergencyWorker(
-//                { outputView.printWeekendEmergencyAssignment().toString() },
-//                { Console.readLine() }
-//        )
+        val weekdayEmployee = getEmergencyWorker(
+                { outputView.printWeekdayEmergencyAssignment().toString() },
+                { Console.readLine() }
+        )
 
-        val ex1 = "준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리".split(",").toMutableList()
-        val ex2 = "수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니".split(",").toMutableList()
+        val weekendEmployee = getEmergencyWorker(
+                { outputView.printWeekendEmergencyAssignment().toString() },
+                { Console.readLine() }
+        )
 
-        val work = EmergencyWork(emergencyWorkDate, ex1, ex2)
+        val work = EmergencyWork(emergencyWorkDate, weekdayEmployee, weekendEmployee)
         val schedule = work.generateEmergencySchedule()
 
-        schedule.forEach { println(it.toString()) }
+        outputView.printScheduleResult(schedule)
     }
 
 }

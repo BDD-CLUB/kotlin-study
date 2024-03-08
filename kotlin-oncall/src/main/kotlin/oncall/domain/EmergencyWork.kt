@@ -3,66 +3,58 @@ package oncall.domain
 class EmergencyWork(
         val emergencyWorkDate: Pair<Month, Day>,
         var weekdayEmployee: MutableList<String>,
-        var holidayEmployee: MutableList<String>,
+        var holidayEmployee: MutableList<String>
 ) {
 
     fun generateEmergencySchedule(): List<EmergencySchedule> {
         var holidayIndex = 0
         var weekdayIndex = 0
-        var currentMonth   = emergencyWorkDate.first
-        var currentDays = emergencyWorkDate.second
-        var currentDay = 1
-        var isHoliday = false
+        val currentMonth = emergencyWorkDate.first
+        var currentDayOfMonth = emergencyWorkDate.second
+        var dayCounter = 1
         val schedule = mutableListOf<EmergencySchedule>()
 
-        val copyWeekdayEmployee: List<String> = weekdayEmployee.toList()
-        val copyHolidayEmployee: List<String> = holidayEmployee.toList()
+        val originalWeekdayEmployee = weekdayEmployee.toList()
+        val originalHolidayEmployee = holidayEmployee.toList()
 
-        for(i in 0 until emergencyWorkDate.first.days) {
-            isHoliday = StatutoryHoliday.entries.any { it.month == currentMonth.month && it.day == currentDay }
+        while (dayCounter <= currentMonth.days) {
+            val isHoliday = isHoliday(currentMonth, dayCounter)
 
-            if (isHoliday || currentDays.isWeekend) {
-                if (weekdayEmployee[weekdayIndex] == holidayEmployee[holidayIndex]) {
-                    val temp = weekdayEmployee[weekdayIndex + 1]
-                    weekdayEmployee[weekdayIndex + 1] = weekdayEmployee[weekdayIndex]
-                    weekdayEmployee[weekdayIndex] = temp
-                }
-
-                schedule.add(EmergencySchedule(currentDays, isHoliday, holidayEmployee[holidayIndex]))
-
-                if (holidayIndex == holidayEmployee.size - 1) {
-                    holidayIndex = 0
-                    holidayEmployee = copyHolidayEmployee.toMutableList()
-                    currentDays = currentDays.next()
-                    currentDay++
-                    continue
-                }
-                holidayIndex++
+            if (isHoliday || currentDayOfMonth.isWeekend) {
+                swapIfSameEmployee(weekdayEmployee, holidayEmployee, weekdayIndex, holidayIndex)
+                schedule.add(EmergencySchedule(currentMonth, dayCounter, currentDayOfMonth, isHoliday, holidayEmployee[holidayIndex]))
+                holidayIndex = incrementIndex(holidayIndex, holidayEmployee, originalHolidayEmployee)
             } else {
-                if (weekdayEmployee[weekdayIndex] == holidayEmployee[holidayIndex]) {
-                    val temp = holidayEmployee[holidayIndex + 1]
-                    holidayEmployee[holidayIndex + 1] = holidayEmployee[holidayIndex]
-                    holidayEmployee[holidayIndex] = temp
-                }
-                schedule.add(EmergencySchedule(currentDays, isHoliday, weekdayEmployee[weekdayIndex]))
-
-                if (weekdayIndex == weekdayEmployee.size - 1) {
-                    weekdayIndex = 0
-                    weekdayEmployee = copyWeekdayEmployee.toMutableList()
-                    currentDays = currentDays.next()
-                    currentDay++
-                    continue
-                }
-                weekdayIndex++
+                swapIfSameEmployee(holidayEmployee, weekdayEmployee, holidayIndex, weekdayIndex)
+                schedule.add(EmergencySchedule(currentMonth, dayCounter, currentDayOfMonth, isHoliday, weekdayEmployee[weekdayIndex]))
+                weekdayIndex = incrementIndex(weekdayIndex, weekdayEmployee, originalWeekdayEmployee)
             }
 
-            println(schedule.size)
-            currentDays = currentDays.next()
-            println(currentDays)
-            currentDay++
+            currentDayOfMonth = currentDayOfMonth.next()
+            dayCounter++
         }
 
         return schedule
     }
 
+    private fun isHoliday(month: Month, day: Int): Boolean =
+            StatutoryHoliday.entries.any { it.month == month.month && it.day == day }
+
+    private fun swapIfSameEmployee(primaryList: MutableList<String>, secondaryList: MutableList<String>, primaryIndex: Int, secondaryIndex: Int) {
+        if (primaryList[primaryIndex] == secondaryList[secondaryIndex]) {
+            val temp = primaryList[primaryIndex + 1]
+            primaryList[primaryIndex + 1] = primaryList[primaryIndex]
+            primaryList[primaryIndex] = temp
+        }
+    }
+
+    private fun incrementIndex(index: Int, currentList: MutableList<String>, originalList: List<String>): Int {
+        return if (index == currentList.size - 1) {
+            currentList.clear()
+            currentList.addAll(originalList)
+            0
+        } else {
+            index + 1
+        }
+    }
 }

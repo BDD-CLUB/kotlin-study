@@ -7,7 +7,6 @@ import oncall.global.Component
 @Component
 class InputView {
 
-
 }
 
 fun getEmergencyDate(printMessage: () -> Unit, console: () -> String): Pair<Month, Day> {
@@ -30,7 +29,7 @@ fun getEmergencyDate(printMessage: () -> Unit, console: () -> String): Pair<Mont
     }
 }
 
-fun getEmergencyWorker(printMessage: () -> Unit, console: () -> String): List<String> {
+fun getEmergencyWorker(printMessage: () -> Unit, console: () -> String): MutableList<String> {
     while (true) {
         try {
             printMessage()
@@ -40,7 +39,7 @@ fun getEmergencyWorker(printMessage: () -> Unit, console: () -> String): List<St
             require(userInput.distinct().size == userInput.size) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
             require(userInput.size in 5..35) { "[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요." }
 
-            return userInput
+            return userInput.toMutableList()
         } catch (e: IllegalArgumentException) {
             println(e.message)
         }
