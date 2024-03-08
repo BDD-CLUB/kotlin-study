@@ -1,5 +1,13 @@
 package oncall
 
+import oncall.global.Container
+
+class Application
+
 fun main() {
-    TODO("프로그램 구현")
+
+    Container.componentScan(Application::class)
+    val emergencyManager = Container.getInstance(EmergencyManager::class)
+    emergencyManager.run()
+
 }
