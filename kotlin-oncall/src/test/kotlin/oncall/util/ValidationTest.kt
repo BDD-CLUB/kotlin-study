@@ -1,5 +1,6 @@
 package oncall.util
 
+import oncall.data.Week
 import org.assertj.core.api.Assertions.assertThatNoException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -14,7 +15,7 @@ class ValidationTest {
     fun `배정 월, 시작요일 유효성 체크 성공`() {
         val size = 2
         val month = 1
-        val week = "월"
+        val week = Week.MONDAY
         validationChecker.checkDate(size, month, week)
         assertThatNoException()
     }
@@ -24,7 +25,7 @@ class ValidationTest {
         assertThrows<IllegalArgumentException> {
             val size = 3
             val month = 1
-            val week = "월"
+            val week = Week.MONDAY
             validationChecker.checkDate(size, month, week)
         }
     }
@@ -34,17 +35,7 @@ class ValidationTest {
         assertThrows<IllegalArgumentException> {
             val size = 2
             val month = 0
-            val week = "월"
-            validationChecker.checkDate(size, month, week)
-        }
-    }
-
-    @Test
-    fun `배정 월, 시작요일 유효성 체크 실패 - 시작 요일 문제`() {
-        assertThrows<IllegalArgumentException> {
-            val size = 2
-            val month = 2
-            val week = "안녕"
+            val week = Week.MONDAY
             validationChecker.checkDate(size, month, week)
         }
     }
