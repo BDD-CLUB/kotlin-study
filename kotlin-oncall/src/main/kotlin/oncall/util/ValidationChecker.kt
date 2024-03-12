@@ -4,10 +4,10 @@ import oncall.data.Week
 
 class ValidationChecker {
 
-    fun checkDate(size: Int, month: Int, week: String) {
+    fun checkDate(size: Int, month: Int, week: Week?) {
         require(size == 2)
         require(month in MONTH_RANGE)
-        require(Week.contains(week))
+        require(week != null)
     }
 
     fun checkWeekdayWorker(worker: List<String>) {

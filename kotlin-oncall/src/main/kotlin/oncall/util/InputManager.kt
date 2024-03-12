@@ -2,6 +2,7 @@ package oncall.util
 
 import camp.nextstep.edu.missionutils.Console
 import oncall.data.OncallInformationDTO
+import oncall.data.Week
 
 class InputManager(
     private val dataConverter: DataConverter = DataConverter(),
@@ -16,7 +17,7 @@ class InputManager(
         return OncallInformationDTO(month, startWeek, weekdayWorker, holidayWorker)
     }
 
-    private fun getDate(): Pair<Int, String> {
+    private fun getDate(): Pair<Int, Week> {
         return getUserInput {
             outputManager.printGetDateMessage()
             val input = Console.readLine() ?: ""

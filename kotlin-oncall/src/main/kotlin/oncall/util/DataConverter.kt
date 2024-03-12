@@ -1,17 +1,19 @@
 package oncall.util
 
+import oncall.data.Week
+
 
 class DataConverter(
     private val validationChecker: ValidationChecker = ValidationChecker()
 ) {
 
-    fun convertDate(input: String): Pair<Int, String> {
+    fun convertDate(input: String): Pair<Int, Week> {
         val split = input.split(',')
         val month = split[0].toIntWithoutNull()
-        val week = split[1]
+        val week = Week.get(split[1])
 
         validationChecker.checkDate(split.size, month, week)
-        return Pair(month, week)
+        return Pair(month, week!!)
     }
 
     fun convertWeekdayWorker(input: String): List<String> {
