@@ -12,19 +12,10 @@ class DecemberEventPlanner {
     private val decemberEventConsoleIO = DecemberEventConsoleIO()
 
     fun run() {
-        decemberEventConsoleIO.printGreetings()
-        val visitDate = decemberEventConsoleIO.getVisitDate()
-        val orderMenus = decemberEventConsoleIO.getOrderMenus()
-        decemberEventConsoleIO.printUpcomingEventBenefitsAtVisitDate(visitDate)
-        decemberEventConsoleIO.printOrderMenus(orderMenus)
-        decemberEventConsoleIO.printTotalPriceBeforeDiscount(orderMenus.totalPriceBeforeDiscount)
+        val (visitDate, orderMenus) = decemberEventConsoleIO.getEventReservationOrder()
+        decemberEventConsoleIO.printEventReservationOrderPreview(visitDate, orderMenus)
         val discount = Discount.of(visitDate, orderMenus)
-        decemberEventConsoleIO.printGiftMenuReport(discount.giftMenu)
-        decemberEventConsoleIO.printBenefitReport(discount)
-        decemberEventConsoleIO.printTotalBenefitPrice(discount.totalBenefitPrice)
-        val paymentPrice = orderMenus.totalPriceBeforeDiscount - discount.totalDiscountPrice
-        decemberEventConsoleIO.printPaymentPriceAfterDiscount(paymentPrice)
-        decemberEventConsoleIO.printDecemberEventBadge(discount.giftStuckBenefitPrice)
+        decemberEventConsoleIO.printDiscountsAndBenefits(orderMenus, discount)
     }
 
 }

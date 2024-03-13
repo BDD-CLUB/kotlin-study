@@ -64,7 +64,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build kotlin-christmas.executor": "Run",
     "Gradle.Build kotlin-lotto.executor": "Run",
+    "Kotlin.ApplicationKt (1).executor": "Run",
     "Kotlin.ApplicationKt.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -80,7 +82,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.ApplicationKt (1)">
+    <configuration name="ApplicationKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="christmas.ApplicationKt" />
+      <module name="kotlin-christmas.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lotto.ApplicationKt" />
       <module name="kotlin-lotto.main" />
@@ -90,6 +99,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.ApplicationKt (1)" />
         <item itemvalue="Kotlin.ApplicationKt" />
       </list>
     </recent_temporary>
@@ -103,7 +113,7 @@
       <option name="presentableId" value="Default" />
       <updated>1708617897466</updated>
       <workItem from="1708617898562" duration="255000" />
-      <workItem from="1710336948420" duration="1000000" />
+      <workItem from="1710336948420" duration="3614000" />
     </task>
     <servers />
   </component>

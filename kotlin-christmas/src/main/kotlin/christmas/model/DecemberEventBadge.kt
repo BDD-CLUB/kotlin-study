@@ -11,7 +11,9 @@ enum class DecemberEventBadge(
 
     companion object {
         fun getBadgeForPrice(price: Int): DecemberEventBadge? {
-            return entries.lastOrNull { price >= it.minimumPrice }
+            return entries
+                .filter { price > it.minimumPrice }
+                .maxByOrNull{ it }
         }
     }
 }

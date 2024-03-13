@@ -11,25 +11,47 @@ const val ORDER_MENU_QUANTITY_SEPARATOR = "-"
 
 class DecemberEventConsoleIO {
 
-    fun printGreetings() {
+    fun getEventReservationOrder(): Pair<Int, OrderMenus> {
+        printGreetings()
+        val visitDate = getVisitDate()
+        val orderMenus = getOrderMenus()
+        return Pair(visitDate, orderMenus)
+    }
+
+    fun printEventReservationOrderPreview(visitDate: Int, orderMenus: OrderMenus) {
+        printUpcomingEventBenefitsAtVisitDate(visitDate)
+        printOrderMenus(orderMenus)
+        printTotalPriceBeforeDiscount(orderMenus.totalPriceBeforeDiscount)
+    }
+
+    fun printDiscountsAndBenefits(orderMenus: OrderMenus, discount: Discount) {
+        printGiftMenuReport(discount.giftMenu)
+        printBenefitReport(discount)
+        printTotalBenefitPrice(discount.totalBenefitPrice)
+        val paymentPrice = orderMenus.totalPriceBeforeDiscount - discount.totalDiscountPrice
+        printPaymentPriceAfterDiscount(paymentPrice)
+        printDecemberEventBadge(discount.giftStuckBenefitPrice)
+    }
+
+    private fun printGreetings() {
         println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.")
     }
 
-    fun getVisitDate(): Int {
+    private fun getVisitDate(): Int {
         println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)")
         return getValidInput { Console.readLine().toValidVisitDate() }
     }
 
-    fun getOrderMenus(): OrderMenus {
+    private fun getOrderMenus(): OrderMenus {
         println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)")
         return getValidInput { Console.readLine().toValidOrderMenus() }
     }
 
-    fun printUpcomingEventBenefitsAtVisitDate(visitDate: Int) {
+    private fun printUpcomingEventBenefitsAtVisitDate(visitDate: Int) {
         println("12월 ${visitDate}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!")
     }
 
-    fun printOrderMenus(orderMenus: OrderMenus) {
+    private fun printOrderMenus(orderMenus: OrderMenus) {
         println()
         println("<주문 메뉴>")
         orderMenus.menuAndQuantityMap.entries.forEach{
@@ -37,19 +59,19 @@ class DecemberEventConsoleIO {
         }
     }
 
-    fun printTotalPriceBeforeDiscount(totalPriceBeforeDiscount: Int) {
+    private fun printTotalPriceBeforeDiscount(totalPriceBeforeDiscount: Int) {
         println()
         println("<할인 전 총주문 금액>")
         println("${totalPriceBeforeDiscount.toPriceWithComma}원")
     }
 
-    fun printGiftMenuReport(giftMenu: GiftMenu?) {
+    private fun printGiftMenuReport(giftMenu: GiftMenu?) {
         println()
         println("<증정 메뉴>")
         println(giftMenu?.let { "${it.menu.itemName} ${it.quantity}개" } ?: "없음")
     }
 
-    fun printBenefitReport(discount: Discount) {
+    private fun printBenefitReport(discount: Discount) {
         val discountDetails = mapOf(
             "크리스마스 디데이 할인" to discount.christmasDDayDiscountPrice,
             "평일 할인" to discount.dailyDiscountPrice,
@@ -70,20 +92,20 @@ class DecemberEventConsoleIO {
         }
     }
 
-    fun printTotalBenefitPrice(totalBenefitPrice: Int) {
+    private fun printTotalBenefitPrice(totalBenefitPrice: Int) {
         println()
         println("<총혜택 금액>")
         if (totalBenefitPrice == 0) println("없음")
         else println("-${totalBenefitPrice.toPriceWithComma}원")
     }
 
-    fun printPaymentPriceAfterDiscount(paymentPrice: Int) {
+    private fun printPaymentPriceAfterDiscount(paymentPrice: Int) {
         println()
         println("<할인 후 예상 결제 금액>")
         println("${paymentPrice.toPriceWithComma}원")
     }
 
-    fun printDecemberEventBadge(totalBenefitPrice: Int) {
+    private fun printDecemberEventBadge(totalBenefitPrice: Int) {
         println()
         println("<12월 이벤트 배지>")
         println(DecemberEventBadge.getBadgeForPrice(totalBenefitPrice)?.description ?: "없음")

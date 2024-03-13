@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-baseball.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-baseball.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-baseball.main.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-baseball.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-baseball.test.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-baseball.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-lotto.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-lotto.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-lotto.main.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-lotto.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlin-lotto.test.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlin-lotto.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kotlin-study.iml" filepath="$PROJECT_DIR$/.idea/kotlin-study.iml" />
     </modules>
   </component>
