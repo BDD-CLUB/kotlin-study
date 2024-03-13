@@ -6,7 +6,6 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 
 class Discount (
-    val isValid: Boolean,
     val christmasDDayDiscountPrice: Int,
     val dailyDiscountPrice: Int,
     val holidayDiscountPrice: Int,
@@ -45,7 +44,6 @@ class Discount (
                 ?.let {
                     val dayOfWeekAtVisitDate = LocalDate.of(2023, 12, visitDate).dayOfWeek
                     Discount(
-                        isValid = true,
                         christmasDDayDiscountPrice = calcChristmasDDayDiscountPrice(visitDate),
                         dailyDiscountPrice = calcDailyDiscountPrice(dayOfWeekAtVisitDate, orderMenus),
                         holidayDiscountPrice = calcHolidayDiscountPrice(dayOfWeekAtVisitDate, orderMenus),
@@ -57,7 +55,6 @@ class Discount (
 
         private fun invalidDiscount(): Discount {
             return Discount(
-                isValid = false,
                 christmasDDayDiscountPrice = 0,
                 dailyDiscountPrice = 0,
                 holidayDiscountPrice = 0,

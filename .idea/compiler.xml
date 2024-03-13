@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="kotlin-baseball" target="17" />
+      <module name="kotlin-baseball.main" target="17" />
+      <module name="kotlin-baseball.test" target="17" />
+      <module name="kotlin-lotto" target="17" />
+      <module name="kotlin-lotto.main" target="17" />
+      <module name="kotlin-lotto.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

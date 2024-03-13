@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.woowacourse-projects:mission-utils:1.1.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.github.woowacourse-projects" artifactId="mission-utils" version="1.1.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.woowacourse-projects/mission-utils/1.1.0/a4b1a3600a51a05d44913c93181de7d143fadce2/mission-utils-1.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.woowacourse-projects/mission-utils/1.1.0/29285f83ba6867c30160691cc16708cd6184cec9/mission-utils-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
