@@ -44,6 +44,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Enum" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -113,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1708617897466</updated>
       <workItem from="1708617898562" duration="255000" />
-      <workItem from="1710336948420" duration="3948000" />
+      <workItem from="1710336948420" duration="8203000" />
     </task>
     <servers />
   </component>

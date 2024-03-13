@@ -2,8 +2,6 @@ package christmas.model
 
 
 import christmas.controller.DECEMBER_EVENT_ORDER_MINIMUM_PRICE
-import java.time.DayOfWeek
-import java.time.LocalDate
 
 class Discount (
     val christmasDDayDiscountPrice: Int,
@@ -26,30 +24,16 @@ class Discount (
         get() = totalDiscountPrice + giftStuckBenefitPrice
 
     companion object {
-        private const val CHRISTMAS_D_DAY_DISCOUNT_START_DAY = 1
-        private const val CHRISTMAS_D_DAY_DISCOUNT_END_DAY = 25
-        private const val CHRISTMAS_D_DAY_DISCOUNT_START_PRICE = 1_000
-        private const val CHRISTMAS_D_DAY_DISCOUNT_INCREASE_PRICE = 100
-        private const val DAILY_DESSERT_DISCOUNT_PRICE = 2_023
-        private const val HOLIDAY_MAIN_COURSE_DISCOUNT_PRICE = 2_023
-        private const val SPECIAL_DISCOUNT_PRICE = 1_000
 
-        private val holiday = listOf(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY)
-        private val starDay = listOf(3, 10, 17, 24, 25, 31)
-
-        fun of(
-            visitDate: Int,
-            orderMenus: OrderMenus
-        ): Discount{
+        fun of(visitDate: Int, orderMenus: OrderMenus): Discount{
             return orderMenus.totalPriceBeforeDiscount
                 .takeIf { it >= DECEMBER_EVENT_ORDER_MINIMUM_PRICE }
                 ?.let {
-                    val dayOfWeekAtVisitDate = LocalDate.of(2023, 12, visitDate).dayOfWeek
                     Discount(
-                        christmasDDayDiscountPrice = calcChristmasDDayDiscountPrice(visitDate),
-                        dailyDiscountPrice = calcDailyDiscountPrice(dayOfWeekAtVisitDate, orderMenus),
-                        holidayDiscountPrice = calcHolidayDiscountPrice(dayOfWeekAtVisitDate, orderMenus),
-                        specialDiscountPrice = calcSpecialDiscountPrice(visitDate),
+                        christmasDDayDiscountPrice = ChristmasDDayDiscountPolicy.calculateDiscount(visitDate, orderMenus),
+                        dailyDiscountPrice = DailyDiscountPolicy.calculateDiscount(visitDate, orderMenus),
+                        holidayDiscountPrice = HolidayDiscountPolicy.calculateDiscount(visitDate, orderMenus),
+                        specialDiscountPrice = SpecialDiscountPolicy.calculateDiscount(visitDate, orderMenus),
                         giftMenu = GiftMenu.getEligibleGift(orderMenus.totalPriceBeforeDiscount)
                     )
                 }?: invalidDiscount()
@@ -64,34 +48,5 @@ class Discount (
                 giftMenu = null
             )
         }
-
-        private fun calcChristmasDDayDiscountPrice(visitDate: Int): Int =
-            if (visitDate in CHRISTMAS_D_DAY_DISCOUNT_START_DAY .. CHRISTMAS_D_DAY_DISCOUNT_END_DAY)
-                CHRISTMAS_D_DAY_DISCOUNT_START_PRICE + CHRISTMAS_D_DAY_DISCOUNT_INCREASE_PRICE * (visitDate - 1)
-            else 0
-
-        private fun calcDailyDiscountPrice(dayOfWeekAtVisitDate: DayOfWeek, orderMenus: OrderMenus): Int {
-            if (dayOfWeekAtVisitDate !in holiday) {
-                val dessertQuantity = orderMenus.menuAndQuantityMap.entries
-                    .filter { it.key.menuType == MenuType.DESSERT }
-                    .sumOf { it.value }
-                return dessertQuantity * DAILY_DESSERT_DISCOUNT_PRICE
-            }
-            return 0
-        }
-
-        private fun calcHolidayDiscountPrice(dayOfWeekAtVisitDate: DayOfWeek, orderMenus: OrderMenus): Int {
-            if (dayOfWeekAtVisitDate in holiday) {
-                val mainCourseQuantity = orderMenus.menuAndQuantityMap.entries.filter { it.key.menuType == MenuType.MAIN_COURSE }.sumOf { it.value }
-                return mainCourseQuantity * HOLIDAY_MAIN_COURSE_DISCOUNT_PRICE
-            }
-            return 0
-        }
-
-        private fun calcSpecialDiscountPrice(visitDate: Int): Int {
-            if (visitDate in starDay) return SPECIAL_DISCOUNT_PRICE
-            return 0
-        }
-
     }
 }
