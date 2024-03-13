@@ -72,7 +72,9 @@ class Discount (
 
         private fun calcDailyDiscountPrice(dayOfWeekAtVisitDate: DayOfWeek, orderMenus: OrderMenus): Int {
             if (dayOfWeekAtVisitDate !in holiday) {
-                val dessertQuantity = orderMenus.menuAndQuantityMap.entries.filter { it.key.menuType == MenuType.DESSERT }.sumOf { it.value }
+                val dessertQuantity = orderMenus.menuAndQuantityMap.entries
+                    .filter { it.key.menuType == MenuType.DESSERT }
+                    .sumOf { it.value }
                 return dessertQuantity * DAILY_DESSERT_DISCOUNT_PRICE
             }
             return 0
