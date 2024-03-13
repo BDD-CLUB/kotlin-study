@@ -13,7 +13,9 @@ class Discount (
     val giftMenu: GiftMenu?,
 ){
 
-    val giftStuckBenefitPrice = giftMenu?.let { it.menu.price * it.quantity }?: 0
+    val giftStuckBenefitPrice
+        get() = giftMenu?.let { it.menu.price * it.quantity }?: 0
+
     val totalDiscountPrice
         get() = christmasDDayDiscountPrice +
                 dailyDiscountPrice +
@@ -22,8 +24,8 @@ class Discount (
 
     val totalBenefitPrice
         get() = totalDiscountPrice + giftStuckBenefitPrice
-    companion object {
 
+    companion object {
         private const val CHRISTMAS_D_DAY_DISCOUNT_START_DAY = 1
         private const val CHRISTMAS_D_DAY_DISCOUNT_END_DAY = 25
         private const val CHRISTMAS_D_DAY_DISCOUNT_START_PRICE = 1_000
