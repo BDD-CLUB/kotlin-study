@@ -65,12 +65,10 @@ class Discount (
             )
         }
 
-        private fun calcChristmasDDayDiscountPrice(visitDate: Int): Int {
-            if (visitDate in CHRISTMAS_D_DAY_DISCOUNT_START_DAY .. CHRISTMAS_D_DAY_DISCOUNT_END_DAY){
-                return CHRISTMAS_D_DAY_DISCOUNT_START_PRICE + CHRISTMAS_D_DAY_DISCOUNT_INCREASE_PRICE * (visitDate - 1)
-            }
-            return 0
-        }
+        private fun calcChristmasDDayDiscountPrice(visitDate: Int): Int =
+            if (visitDate in CHRISTMAS_D_DAY_DISCOUNT_START_DAY .. CHRISTMAS_D_DAY_DISCOUNT_END_DAY)
+                CHRISTMAS_D_DAY_DISCOUNT_START_PRICE + CHRISTMAS_D_DAY_DISCOUNT_INCREASE_PRICE * (visitDate - 1)
+            else 0
 
         private fun calcDailyDiscountPrice(dayOfWeekAtVisitDate: DayOfWeek, orderMenus: OrderMenus): Int {
             if (dayOfWeekAtVisitDate !in holiday) {
