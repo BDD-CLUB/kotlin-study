@@ -1,5 +1,8 @@
 package christmas
 
+import christmas.controller.DecemberEventPlanner
+
 fun main() {
-    TODO("프로그램 구현")
+    val decemberEventController = DecemberEventPlanner()
+    decemberEventController.run()
 }
