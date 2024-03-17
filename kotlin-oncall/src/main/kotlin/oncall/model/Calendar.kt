@@ -28,20 +28,19 @@ class Date(
     val dayOfWeek: DayOfWeek,
 ) {
     val isPublicHoliday: Boolean
-        get() = publicHoliday.contains(Pair(month, day))
+        get() = publicHolidays[month]?.contains(day) == true
 
     val isHoliday: Boolean
         get() = isPublicHoliday || dayOfWeek.isHoliday
 
-    private val publicHoliday = listOf(
-        Pair(Month.JANUARY, 1),
-        Pair(Month.MARCH, 1),
-        Pair(Month.MAY, 5),
-        Pair(Month.JUNE, 6),
-        Pair(Month.AUGUST, 15),
-        Pair(Month.OCTOBER, 3),
-        Pair(Month.OCTOBER, 9),
-        Pair(Month.DECEMBER, 25)
+    private val publicHolidays = mapOf(
+        Month.JANUARY to listOf(1),
+        Month.MARCH to listOf(1),
+        Month.MAY to listOf(5),
+        Month.JUNE to listOf(6),
+        Month.AUGUST to listOf(15),
+        Month.OCTOBER to listOf(3, 9),
+        Month.DECEMBER to listOf(25)
     )
 
 }
