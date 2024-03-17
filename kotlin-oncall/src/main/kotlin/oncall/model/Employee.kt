@@ -4,6 +4,7 @@ import oncall.exception.OnCallException
 import oncall.exception.customRequire
 
 const val MAXIMUM_NICKNAME_LENGTH = 5
+
 class Employee(
     val nickName: String
 ) {

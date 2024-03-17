@@ -1,10 +1,10 @@
 package oncall.view
 
 import camp.nextstep.edu.missionutils.Console
-import oncall.controller.INPUT_SEPARATOR
-import oncall.model.OnCallSchedule
-import oncall.model.*
 import oncall.exception.OnCallException
+import oncall.model.*
+
+const val INPUT_SEPARATOR = ","
 
 class OnCallConsoleIO {
     fun getOnCallMonthAndDayOfTheWeek(): Pair<Month, DayOfWeek> {

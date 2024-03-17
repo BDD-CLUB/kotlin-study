@@ -4,8 +4,6 @@ import oncall.model.Calendar
 import oncall.model.OnCallSchedule
 import oncall.view.OnCallConsoleIO
 
-const val INPUT_SEPARATOR = ","
-
 class OnCallRotationAssigner {
     private val onCallConsoleIO = OnCallConsoleIO()
     fun run() {
