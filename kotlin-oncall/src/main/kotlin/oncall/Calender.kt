@@ -30,9 +30,8 @@ class Calender {
         while (day <= lastDayOfMonth) {
             val dayOfWeek = Weekday.entries[(startDay!! + day - 1) % 7]
             if (dayOfWeek in Weekday.isWeekDay()) {
-                if (!weekdayStack.isEmpty() && weekendStack.peek()!=recentlyWorker) {
+                if (!weekdayStack.isEmpty() && weekendStack.peek() != recentlyWorker) {
                     recentlyWorker = weekdayStack.pop()
-
                 } else {
                     if (recentlyWorker == weekdayEmergency[weekdayTrun]) { // 이전과 같다
                         weekdayStack.push(weekdayEmergency[weekdayTrun])
@@ -43,12 +42,22 @@ class Calender {
                         weekdayTrun = addTurn(weekdayTrun, weekdayEmergency)
                     }
                 }
+            } else {
+                if (!weekendStack.isEmpty() && weekendStack.peek() != recentlyWorker) {
+                    recentlyWorker = weekendStack.pop()
+                } else {
+                    if (recentlyWorker == weekendEmergency[weekendTrun]) { // 이전과 같다
+                        weekendStack.push(weekendEmergency[weekendTrun])
+                        weekendTrun = addTurn(weekendTrun, weekendEmergency)
+                        recentlyWorker = weekendEmergency[weekendTrun]
+                    } else { // 이전과 다르다
+                        recentlyWorker = weekendEmergency[weekendTrun]
+                        weekendTrun = addTurn(weekendTrun, weekendEmergency)
+                    }
+                }
             }
 
-
-            println("${month}월 ${day}일 : ${dayOfWeek.description}요일 ${recentlyWorker}")
-
-            day++
+            println("${month}월 ${day++}일 ${dayOfWeek.description} ${recentlyWorker}")
         }
 
 
