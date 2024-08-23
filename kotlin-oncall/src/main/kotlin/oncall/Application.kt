@@ -1,5 +1,8 @@
 package oncall
 
+import oncall.controller.OnCallRotationAssigner
+
 fun main() {
-    TODO("프로그램 구현")
+    val onCallRotationAssigner = OnCallRotationAssigner()
+    onCallRotationAssigner.run()
 }
